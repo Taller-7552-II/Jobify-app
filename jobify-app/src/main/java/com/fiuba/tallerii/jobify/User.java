@@ -37,4 +37,9 @@ public class User
     {
         return mPassword;
     }
+
+    public void setPassword(String password)
+    {
+        mPassword = password;
+    }
 }

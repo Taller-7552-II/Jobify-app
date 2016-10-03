@@ -17,8 +17,6 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.text.TextUtils;
-import android.util.Log;
-import android.util.Patterns;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,7 +38,7 @@ import static android.Manifest.permission.READ_CONTACTS;
  *
  * Sign Up Form - Has some duplicated code with Log In Fragment
  */
-public class SignUpFragment extends Fragment  implements LoaderManager.LoaderCallbacks<Cursor>
+public class SignUpFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>
 {
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -189,23 +187,10 @@ public class SignUpFragment extends Fragment  implements LoaderManager.LoaderCal
         boolean cancel = false;
         View focusView = null;
 
-        //Check for a valid first name, if the user entered one
-        if (!TextUtils.isEmpty(password) && !isNameValid(firstName))
-        {
-            mFirstNameEditText.setError(getString(R.string.error_invalid_name));
-            focusView = mFirstNameEditText;
-            cancel = true;
-        }
-        //Check for a valid last name, if the user entered one
-        if (!TextUtils.isEmpty(password) && !isNameValid(lastName))
-        {
-            mLastNameEditText.setError(getString(R.string.error_invalid_name));
-            focusView = mLastNameEditText;
-            cancel = true;
-        }
+        FieldValidator fieldValidator = new FieldValidator();
 
         // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password))
+        if (!TextUtils.isEmpty(password) && !fieldValidator.isPasswordValid(password))
         {
             mPasswordEditText.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordEditText;
@@ -218,10 +203,26 @@ public class SignUpFragment extends Fragment  implements LoaderManager.LoaderCal
             mEmailAutocompleteText.setError(getString(R.string.error_field_required));
             focusView = mEmailAutocompleteText;
             cancel = true;
-        } else if (!isEmailValid(email))
+        } else if (!fieldValidator.isEmailValid(email))
         {
             mEmailAutocompleteText.setError(getString(R.string.error_invalid_email));
             focusView = mEmailAutocompleteText;
+            cancel = true;
+        }
+
+        //Check for a valid last name, if the user entered one
+        if (!TextUtils.isEmpty(lastName) && !fieldValidator.isNameValid(lastName))
+        {
+            mLastNameEditText.setError(getString(R.string.error_invalid_name));
+            focusView = mLastNameEditText;
+            cancel = true;
+        }
+
+        //Check for a valid first name, if the user entered one
+        if (!TextUtils.isEmpty(firstName) && !fieldValidator.isNameValid(firstName))
+        {
+            mFirstNameEditText.setError(getString(R.string.error_invalid_name));
+            focusView = mFirstNameEditText;
             cancel = true;
         }
 
@@ -239,31 +240,6 @@ public class SignUpFragment extends Fragment  implements LoaderManager.LoaderCal
             mSignUpTask = new UserSignUpTask(user);
             mSignUpTask.execute((Void) null);
         }
-    }
-
-    private boolean isNameValid(String name)
-    {
-        //probably faster than return name.matches("[a-zA-Z]+");
-        char[] chars = name.toCharArray();
-        for (char c : chars)
-        {
-            if(!Character.isLetter(c))
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private boolean isEmailValid(String email)
-    {
-        Log.w("SignUp Fragment", "invalid email: " + email);
-        return Patterns.EMAIL_ADDRESS.matcher(email).matches();
-    }
-
-    private boolean isPasswordValid(String password)
-    {
-        return password.length() > 4;
     }
 
     /**
@@ -384,6 +360,8 @@ public class SignUpFragment extends Fragment  implements LoaderManager.LoaderCal
         protected Boolean doInBackground(Void... params)
         {
             // TODO: Put new user to server
+            ServerHandler serverHandler = ServerHandler.get(getActivity());
+            serverHandler.addUser(mUser);
 
             try
             {
@@ -394,9 +372,6 @@ public class SignUpFragment extends Fragment  implements LoaderManager.LoaderCal
                 return false;
             }
 
-
-            // Invalid mail and/or password
-            Toast.makeText(getActivity(), getString(R.string.prompt_registration_complete), Toast.LENGTH_SHORT).show();
             return true;
         }
 
@@ -408,6 +383,7 @@ public class SignUpFragment extends Fragment  implements LoaderManager.LoaderCal
 
             if (success)
             {
+                Toast.makeText(getActivity(), getString(R.string.prompt_registration_complete), Toast.LENGTH_SHORT).show();
                 getActivity().finish();
             } else
             {

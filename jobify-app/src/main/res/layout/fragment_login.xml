@@ -7,11 +7,9 @@
               android:paddingLeft="@dimen/activity_horizontal_margin"
               android:paddingRight="@dimen/activity_horizontal_margin"
               android:paddingTop="@dimen/activity_vertical_margin"
-              tools:context=".LoginActivity"
-              android:elevation="1dp"
+              tools:context=".LogInActivity"
               android:focusable="false"
               android:gravity="center"
-              android:minWidth="500dp"
               android:background="@android:color/holo_blue_dark">
 
     <!-- Login progress -->

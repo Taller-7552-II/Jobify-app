@@ -18,8 +18,6 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.text.TextUtils;
-import android.util.Log;
-import android.util.Patterns;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,13 +42,6 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
      */
     private static final int REQUEST_READ_CONTACTS = 0;
 
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
@@ -154,6 +145,22 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
         return v;
     }
 
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        resetFields();
+    }
+
+    private void resetFields()
+    {
+        mEmailAutocompleteText.setError(null);
+        mEmailAutocompleteText.setText("");
+        mPasswordEditText.setError(null);
+        mPasswordEditText.setText("");
+        mEmailAutocompleteText.requestFocus();
+    }
+
     private void OpenSignUpActivity()
     {
         Intent intent = new Intent(getActivity(), SignUpActivity.class);
@@ -246,8 +253,10 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
         boolean cancel = false;
         View focusView = null;
 
+        FieldValidator fieldValidator = new FieldValidator();
+
         // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password))
+        if (!TextUtils.isEmpty(password) && !fieldValidator.isPasswordValid(password))
         {
             mPasswordEditText.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordEditText;
@@ -260,7 +269,7 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
             mEmailAutocompleteText.setError(getString(R.string.error_field_required));
             focusView = mEmailAutocompleteText;
             cancel = true;
-        } else if (!isEmailValid(email))
+        } else if (!fieldValidator.isEmailValid(email))
         {
             mEmailAutocompleteText.setError(getString(R.string.error_invalid_email));
             focusView = mEmailAutocompleteText;
@@ -280,18 +289,6 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
         }
-    }
-
-    private boolean isEmailValid(String email)
-    {
-        Log.w("Login Fragment", "invalid email: " + email);
-        return Patterns.EMAIL_ADDRESS.matcher(email).matches();
-    }
-
-    private boolean isPasswordValid(String password)
-    {
-        //TODO: Replace this if we want to make it more complex
-        return password.length() > 4;
     }
 
     /**
@@ -426,7 +423,9 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
                 return false;
             }
 
-            for (String credential : DUMMY_CREDENTIALS)
+            ServerHandler serverHandler = ServerHandler.get(getActivity());
+            ArrayList<String> credentials = serverHandler.getCredentials();
+            for (String credential : credentials)
             {
                 String[] pieces = credential.split(":");
                 if (pieces[0].equals(mEmail))
@@ -436,8 +435,6 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
                 }
             }
 
-            // Invalid mail and/or password
-            Toast.makeText(getActivity(), getString(R.string.error_invalid_login_info), Toast.LENGTH_SHORT).show(); // DEBUG
             return false;
         }
 
@@ -449,9 +446,14 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
 
             if (success)
             {
-                getActivity().finish();
+                // Succesful Authentication
+                Intent intent = new Intent(getActivity(), MainMenuActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             } else
             {
+                // Invalid mail and/or password
+                Toast.makeText(getActivity(), getString(R.string.error_invalid_login_info), Toast.LENGTH_SHORT).show(); // DEBUG
                 mPasswordEditText.setError(getString(R.string.error_incorrect_password));
                 mPasswordEditText.requestFocus();
             }
