@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Jobify</string>
+    <string name="tittle_jobify">Jobify</string>
+
+    <!-- Strings related to login and signup -->
+    <string name="signup_label">Sign up</string>
+    <string name="prompt_registration_complete">Congratulation and thank you for joining us!</string>
+    <string name="prompt_first_name">First name</string>
+    <string name="prompt_last_name">Last name</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_submit">Submit</string>
+    <string name="action_sign_up">Sign up</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="action_sign_up_short">Sign up</string>
+    <string name="error_invalid_login_info">Invalid password or email</string>
+    <string name="error_invalid_name">This name is invalid</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="debug_text">Debug</string>
+</resources>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:paddingBottom="@dimen/activity_vertical_margin"
+              android:paddingLeft="@dimen/activity_horizontal_margin"
+              android:paddingRight="@dimen/activity_horizontal_margin"
+              android:paddingTop="@dimen/activity_vertical_margin"
+              android:focusable="false"
+              android:gravity="center_vertical|center"
+              android:background="@android:color/holo_blue_dark">
+
+        <!-- Login progress -->
+        <ProgressBar
+            android:id="@+id/signup_progress"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:visibility="gone"
+            />
+
+
+        <ScrollView
+            android:id="@+id/signup_form"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:clickable="false"
+            >
+
+            <LinearLayout
+                android:id="@+id/email_login_form"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:weightSum="1"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp" >
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:hint="@string/prompt_first_name"
+                    android:id="@+id/signup_first_name"
+                    android:paddingTop="16dp"
+                    android:maxLines="1"
+                    android:singleLine="true"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:hint="@string/prompt_last_name"
+                    android:id="@+id/signup_last_name"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:paddingTop="16dp"/>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/signup_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/prompt_email"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:paddingTop="16dp"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/signup_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/prompt_password"
+                        android:imeActionId="@+id/sign_up"
+                        android:imeActionLabel="@string/action_sign_up_short"
+                        android:imeOptions="actionUnspecified"
+                        android:inputType="textPassword"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:paddingTop="16dp"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <Button
+                    android:id="@+id/signup_signup_button"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/action_sign_up"
+                    android:textStyle="bold"
+                    android:padding="8dp"
+                    android:elevation="6dp"
+                    android:backgroundTint="@color/abc_btn_colored_borderless_text_material"
+                    android:layout_gravity="bottom"
+                    />
+
+            </LinearLayout>
+        </ScrollView>
+
+</LinearLayout>
