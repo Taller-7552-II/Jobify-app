@@ -1,0 +1,32 @@
+cmake_minimum_required(VERSION 3.2)
+
+PROJECT (Servidor)
+
+SET( CMAKE_VERBOSE_MAKEFILE on )
+
+INCLUDE_DIRECTORIES(../src/3rdparty/mongoose)
+INCLUDE_DIRECTORIES(/usr/lib/x86_64-linux-gnu/)
+
+LINK_DIRECTORIES(/usr/local/lib/ /usr/lib /usr/lib/x86_64-linux-gnu/ )
+SET(Servidor_LIBS pthread)
+SET(SSL_LIBS ssl crypto)
+
+SET(COMMON_SRCS ../src/3rdparty/mongoose/mongoose.c
+	../src/Server.cpp
+	../src/ClientHandler.cpp
+	../src/SharedServerHandler.cpp
+)
+SET (Servidor_SRCS ../src/main.cpp ${COMMON_SRCS})
+
+SET (COMMON_FLAGS "-g -W -Wall -Wno-unused-function")
+SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${COMMON_FLAGS}")
+SET (CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} ${COMMON_FLAGS} -fprofile-arcs -ftest-coverage --coverage")
+SET (CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ${COMMON_FLAGS}")
+
+ADD_DEFINITIONS(-std=c++11)
+ADD_EXECUTABLE (Servidor ${Servidor_SRCS})
+
+ADD_DEFINITIONS(-DMG_ENABLE_SSL)
+ADD_DEFINITIONS(-DMG_ENABLE_THREADS)
+TARGET_LINK_LIBRARIES(Servidor ${SSL_LIBS})
+TARGET_LINK_LIBRARIES(Servidor ${Servidor_LIBS})
