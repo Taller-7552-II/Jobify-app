@@ -11,10 +11,11 @@ android:
   components:
   - tools
   - platform-tools
-  - build-tools-24.0.0
+  - build-tools-24.0.2
   - android-24
   - extra-android-m2repository
   - extra-google-m2repository
+
 #  - sys-img-${ANDROID_ABI}-${ANDROID_TARGET}
 
 before_script:
@@ -22,6 +23,7 @@ before_script:
 #  - emulator -avd test -no-skin -no-audio -no-window &
 
 script:
+  #- ./gradlew build connectedCheck
   - ./gradlew build --continue
 
 before_install:
