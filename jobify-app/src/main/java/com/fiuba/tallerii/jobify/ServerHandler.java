@@ -95,7 +95,7 @@ public class ServerHandler
 
             if (connection.getResponseCode() == HttpURLConnection.HTTP_OK)
             {
-                Log.i("HTTP GET", "Succesful connection to " + urlSpec);
+                Log.i("HTTP GET", "Successful connection to " + urlSpec);
                 InputStream responseBody = connection.getInputStream();
                 InputStreamReader responseBodyReader = new InputStreamReader(responseBody, "UTF-8");
                 BufferedReader streamReader = new BufferedReader(responseBodyReader);
