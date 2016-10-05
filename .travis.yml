@@ -23,6 +23,3 @@ before_script:
 
 script:
   - ./gradlew build --continue
-
-  before_install:
- - chmod +x gradlew
