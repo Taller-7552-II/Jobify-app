@@ -2,6 +2,9 @@
     <string name="app_name">Jobify</string>
     <string name="tittle_jobify">Jobify</string>
 
+    <!-- Strings related to login and signupMenu Screen-->
+    <string name="prompt_content">Content</string>
+
     <!-- Strings related to login and signup -->
     <string name="signup_label">Sign up</string>
     <string name="prompt_registration_complete">Congratulation and thank you for joining us!</string>
@@ -24,4 +27,11 @@
         completions."
     </string>
     <string name="debug_text">Debug</string>
+
+    <!-- Strings related Networking -->
+    <string name="http_put">Put</string>
+    <string name="http_get">Get</string>
+    <string name="http_post">Post</string>
+    <string name="http_delete">Delete</string>
+
 </resources>
