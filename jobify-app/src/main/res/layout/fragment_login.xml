@@ -10,7 +10,7 @@
               tools:context=".LogInActivity"
               android:focusable="false"
               android:gravity="center"
-              android:background="@android:color/holo_blue_dark">
+              android:background="@color/colorPrimary">
 
     <!-- Login progress -->
     <ProgressBar
@@ -56,7 +56,9 @@
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:textColor="#f8fcfc"/>
+                    android:textColor="#f8fcfc"
+                    android:backgroundTint="#e2fdfe"
+                    />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -75,7 +77,8 @@
                     android:inputType="textPassword"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:textColor="#f8fcfc"/>
+                    android:textColor="#f8fcfc"
+                    android:backgroundTint="#e2fdfe"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -136,7 +139,9 @@
                     android:hint="IP address"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:textColor="#f8fcfc"/>
+                    android:textColor="#f8fcfc"
+                    android:backgroundTint="#e2fdfe"
+                    />
 
                 <Button
                     style="@style/Widget.AppCompat.Button.Colored"
@@ -146,6 +151,13 @@
                     android:imeActionId="@+id/debug_submit_ip"
                     android:id="@+id/debug_submit_button"
                     android:elevation="6dp"
+                    android:layout_gravity="center_horizontal"/>
+
+                <android.support.v7.widget.AppCompatCheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enable authentication"
+                    android:id="@+id/login_checkbox_auth"
                     android:layout_gravity="center_horizontal"/>
 
             </LinearLayout>
