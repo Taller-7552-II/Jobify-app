@@ -26,6 +26,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -59,6 +60,7 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
      // Variables temporales para configurar Conexión con el servidor
     private EditText mIPEditText;
     private Button mSubmitIPButton;
+    private CheckBox mCheckbox;
     //**************************************************************
 
     @Override
@@ -113,6 +115,8 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
             }
         });
 
+        mCheckbox = (CheckBox) v.findViewById(R.id.login_checkbox_auth);
+
          // Debug Information for checkpoint 2
         mIPEditText = (EditText) v.findViewById(R.id.debug_ip_edittext);
         mIPEditText.setOnEditorActionListener(new TextView.OnEditorActionListener()
@@ -128,6 +132,7 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
                 return false;
             }
         });
+        mIPEditText.setText(ServerHandler.get(getActivity()).getServerIP());
         mSubmitIPButton = (Button) v.findViewById(R.id.debug_submit_button);
         mSubmitIPButton.setOnClickListener(new View.OnClickListener()
         {
@@ -159,6 +164,7 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
         mPasswordEditText.setError(null);
         mPasswordEditText.setText("");
         mEmailAutocompleteText.requestFocus();
+        mIPEditText.setText(ServerHandler.get(getActivity()).getServerIP());
     }
 
     private void OpenSignUpActivity()
@@ -255,8 +261,14 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
 
         FieldValidator fieldValidator = new FieldValidator();
 
-        // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !fieldValidator.isPasswordValid(password))
+        // Check for a valid password
+        if (TextUtils.isEmpty(password))
+        {
+            mPasswordEditText.setError(getString(R.string.error_field_required));
+            focusView = mPasswordEditText;
+            cancel = true;
+        }
+        else if (!fieldValidator.isPasswordValid(password))
         {
             mPasswordEditText.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordEditText;
@@ -286,7 +298,7 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
+            mAuthTask = new UserLoginTask(email, password, mCheckbox.isChecked());
             mAuthTask.execute((Void) null);
         }
     }
@@ -402,11 +414,13 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
 
         private final String mEmail;
         private final String mPassword;
+        boolean mUseAthentication;
 
-        UserLoginTask(String email, String password)
+        UserLoginTask(String email, String password, boolean useAthentication)
         {
             mEmail = email;
             mPassword = password;
+            mUseAthentication = useAthentication;
         }
 
         @Override
@@ -421,6 +435,11 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
             } catch (InterruptedException e)
             {
                 return false;
+            }
+
+            if (!mUseAthentication)
+            {
+                return true;
             }
 
             ServerHandler serverHandler = ServerHandler.get(getActivity());
@@ -448,7 +467,7 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
             {
                 // Succesful Authentication
                 Intent intent = new Intent(getActivity(), MainMenuActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
             } else
             {
