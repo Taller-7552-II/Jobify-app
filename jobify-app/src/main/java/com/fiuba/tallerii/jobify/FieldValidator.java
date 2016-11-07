@@ -20,7 +20,7 @@ public class FieldValidator
 
     public boolean isEmailValid(String email)
     {
-        return Patterns.EMAIL_ADDRESS.matcher(email).matches();
+        return (Patterns.EMAIL_ADDRESS.matcher(email).matches());
     }
 
     public boolean isPasswordValid(String password)

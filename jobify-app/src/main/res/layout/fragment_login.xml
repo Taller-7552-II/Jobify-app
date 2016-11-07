@@ -28,7 +28,8 @@
         android:layout_height="wrap_content"
         android:gravity="top"
         android:paddingTop="12dp"
-        android:src="@mipmap/jobify_tittle"/>
+        android:src="@mipmap/jobify_tittle"
+        android:contentDescription="@string/description_jobify_tittle"/>
 
     <ScrollView
         android:id="@+id/login_form"
@@ -129,7 +130,7 @@
                     android:text="@string/debug_text"
                     android:id="@+id/debug_section_tittle"
                     android:layout_gravity="center_horizontal"
-                    android:textSize="24dp"
+                    android:textSize="24sp"
                     android:textColor="#ebf9fc"/>
 
                 <EditText

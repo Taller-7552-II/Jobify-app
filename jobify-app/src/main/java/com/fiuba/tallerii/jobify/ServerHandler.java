@@ -37,7 +37,7 @@ public class ServerHandler
 
     public void addUser(User user)
     {
-        String newCredential = new String(user.getEmail() + ":" + user.getPassword());
+        String newCredential = user.getEmail() + ":" + user.getPassword();
         mDummyCredentials.add(newCredential);
     }
 
