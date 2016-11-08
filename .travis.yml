@@ -6,6 +6,8 @@ env:
   global:
     - ANDROID_TARGET=android-24
     - ANDROID_ABI=armeabi-v7a
+  matrix:
+    - TERM=dumb
 
 android:
   components:
@@ -30,5 +32,5 @@ before_install:
   - chmod +x gradlew
 
 after_success:
-  - ./gradlew cobertura coveralls
+  - ./gradlew jacocoTestReport coveralls
 
