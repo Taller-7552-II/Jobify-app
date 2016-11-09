@@ -3,32 +3,37 @@ apply plugin: "com.github.kt3k.coveralls"
 
 jacoco {
     toolVersion = "0.7.6.201602180812"
+    reportsDir = file("$buildDir/customJacocoReportDir")
 }
 
-subprojects {
-    apply plugin: 'java'
+def coverageSourceDirs = [
+    'src/main/java',
+]
 
-    dependencies {
-        testCompile 'junit:junit:4.11'
+task jacocoTestReport(type: JacocoReport, dependsOn: "connectedDebugAndroidTest") {
+  group = "Reporting"
+  description = "Generate Jacoco coverage reports after running tests."
+  reports {
+    xml.enabled = true // coveralls plugin depends on xml format report
+    html.enabled = true
+    csv.enabled true
+  }
+  classDirectories = fileTree(
+      dir: './build/intermediates/classes/debug',
+      excludes: ['**/R*.class',
+                 '**/*$InjectAdapter.class',
+                 '**/*$ModuleAdapter.class',
+                 '**/*$ViewInjector*.class'
+      ])
+  sourceDirectories = files(coverageSourceDirs)
+  executionData = files("$buildDir/jacoco/testDebug.exec")
+  // Bit hacky but fixes https://code.google.com/p/android/issues/detail?id=69174.
+  // We iterate through the compiled .class tree and rename $$ to $.
+  doFirst {
+    new File("$buildDir/intermediates/classes/").eachFileRecurse { file ->
+      if (file.name.contains('$$')) {
+        file.renameTo(file.path.replace('$$', '$'))
+      }
     }
-
-    jacocoTestReport {
-        reports {
-            html.enabled = true
-            xml.enabled = true
-            csv.enabled = false
-        }
-    }
-}
-
-task jacocoRootReport(type: org.gradle.testing.jacoco.tasks.JacocoReport) {
-    dependsOn = subprojects.test
-    sourceDirectories = files(subprojects.sourceSets.main.allSource.srcDirs)
-    classDirectories =  files(subprojects.sourceSets.main.output)
-    executionData = files(subprojects.jacocoTestReport.executionData)
-    reports {
-        html.enabled = true
-        xml.enabled = true
-        csv.enabled = false
-    }
+  }
 }

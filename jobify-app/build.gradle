@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 
 apply from: '../codeQuality.gradle'
 
+
 ext {
     travisBuild = System.getenv("TRAVIS") == "true"
     // allows for -Dpre-dex=false to be set
@@ -49,7 +50,7 @@ dependencies {
 
 
 repositories {
-    maven {
-        url "https://plugins.gradle.org/m2/"
-    }
+    jcenter()
+    mavenLocal()
+    mavenCentral()
 }
