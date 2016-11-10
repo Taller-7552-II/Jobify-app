@@ -33,3 +33,7 @@ task jacocoTestReport(type: JacocoReport, dependsOn: "test") {
     }
 
 }
+
+coveralls {
+    jacocoReportPath 'build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml'
+}
