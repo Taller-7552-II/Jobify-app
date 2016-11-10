@@ -26,13 +26,13 @@ before_script:
 #  - emulator -avd test -no-skin -no-audio -no-window &
 
 script:
-  - ./gradlew clean build jacocoDebugReport coveralls -Dscan --configure-on-demand --parallel --stacktrace
+  - ./gradlew clean build jacocoTestReport coveralls -Dscan --configure-on-demand --parallel --stacktrace
 
 before_install:
   - chmod +x gradlew
 
 after_success:
-  - ./gradlew jacocoDebugReport coveralls
+  - ./gradlew jacocoTestReport coveralls
 
 after_failure:
   - ./gradlew clean check --debug
