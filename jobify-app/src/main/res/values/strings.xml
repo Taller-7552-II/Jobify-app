@@ -2,6 +2,8 @@
     <string name="app_name">Jobify</string>
     <string name="tittle_jobify">Jobify</string>
 
+    <!-- Content Descriptions-->
+    <string name="description_jobify_tittle">Jobify Application Icon</string>
     <!-- Strings related to login and signupMenu Screen-->
     <string name="prompt_content">Content</string>
 

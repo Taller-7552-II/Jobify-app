@@ -6,6 +6,9 @@ env:
   global:
     - ANDROID_TARGET=android-24
     - ANDROID_ABI=armeabi-v7a
+    - ADB_INSTALL_TIMEOUT=8
+  matrix:
+    - TERM=dumb
 
 android:
   components:
@@ -15,17 +18,24 @@ android:
   - android-24
   - extra-android-m2repository
   - extra-google-m2repository
+  #- sys-img-${ANDROID_ABI}-${ANDROID_TARGET}
 
-#  - sys-img-${ANDROID_ABI}-${ANDROID_TARGET}
 
 before_script:
 #  - echo no | android create avd --force --name test --target $ANDROID_TARGET --abi $ANDROID_ABI
 #  - emulator -avd test -no-skin -no-audio -no-window &
 
 script:
-  #- ./gradlew build connectedCheck
-  - ./gradlew build --continue
+  - ./gradlew test
+  - ./gradlew clean build jacocoTestReport coveralls -Dscan --configure-on-demand --parallel --stacktrace
 
 before_install:
   - chmod +x gradlew
 
+after_success:
+  - ./gradlew jacocoTestReport coveralls
+
+after_failure:
+  - ./gradlew clean check --debug
+
+sudo: required
