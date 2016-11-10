@@ -18,6 +18,7 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +31,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -409,41 +413,56 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
      * Represents an asynchronous login task used to authenticate
      * the user.
      */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean>
+    public class UserLoginTask extends AsyncTask<Void, Void, String>
     {
 
         private final String mEmail;
         private final String mPassword;
-        boolean mUseAthentication;
+        boolean mUseAuthentication;
 
         UserLoginTask(String email, String password, boolean useAthentication)
         {
             mEmail = email;
             mPassword = password;
-            mUseAthentication = useAthentication;
+            mUseAuthentication = useAthentication;
         }
 
         @Override
-        protected Boolean doInBackground(Void... params)
+        protected String doInBackground(Void... params)
         {
             // TODO: attempt authentication against a network service. APPSERVER/HEROKU
 
-            try
+            /*try
             {
                 // Simulate network access.
                 Thread.sleep(2000);
             } catch (InterruptedException e)
             {
                 return false;
-            }
+            }*/
 
-            if (!mUseAthentication)
+            if (!mUseAuthentication)
             {
-                return true;
+                return "";
             }
 
+            String urlSpec = "http://" + ServerHandler.get(getActivity()).getServerIP() + "/sessions/" + mEmail;
             ServerHandler serverHandler = ServerHandler.get(getActivity());
-            ArrayList<String> credentials = serverHandler.getCredentials();
+            String loginParams = "";
+            try
+            {
+                JSONObject jsonLoginParams= new JSONObject();
+                jsonLoginParams.put("mail", mEmail);
+                jsonLoginParams.put("password", mPassword);
+                loginParams = jsonLoginParams.toString();
+            }
+            catch(JSONException e)
+            {
+                Log.e("Json Error", "Error creating Login Json File");
+            }
+
+            return serverHandler.POST(urlSpec, loginParams);
+           /* ArrayList<String> credentials = serverHandler.getCredentials();
             for (String credential : credentials)
             {
                 String[] pieces = credential.split(":");
@@ -452,30 +471,44 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
                     // Account exists, return true if the password matches.
                     return pieces[1].equals(mPassword);
                 }
-            }
+            }*/
 
-            return false;
+            //return false;
         }
 
         @Override
-        protected void onPostExecute(final Boolean success)
+        protected void onPostExecute(final String response)
         {
             mAuthTask = null;
             showProgress(false);
 
-            if (success)
+            String status;
+            try
             {
+                JSONObject loginResponse = new JSONObject(response);
+                status = loginResponse.getString("status");
+                String connToken = loginResponse.getString("conn_token");
+                ServerHandler.get(getActivity()).setConnectionToken(connToken);;
+            }
+            catch (JSONException e)
+            {
+                status = "Error parsing response";
+                Log.e("Json Error", "Error parsing Sign up response");
+            }
+            Toast.makeText(getActivity(), status, Toast.LENGTH_SHORT).show();
+           /* if (success)
+            {*/
                 // Succesful Authentication
                 Intent intent = new Intent(getActivity(), MainMenuActivity.class);
                 //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
-            } else
+           /* } else
             {
                 // Invalid mail and/or password
                 Toast.makeText(getActivity(), getString(R.string.error_invalid_login_info), Toast.LENGTH_SHORT).show(); // DEBUG
                 mPasswordEditText.setError(getString(R.string.error_incorrect_password));
                 mPasswordEditText.requestFocus();
-            }
+            }*/
         }
 
         @Override

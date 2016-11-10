@@ -41,81 +41,97 @@
         android:layout_below="@+id/tittle_menu_checkpoint"
         android:hint="Relative URL"/>
 
-    <RadioGroup
-        android:orientation="horizontal"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/radio_group_menu"
-        android:weightSum="1"
-        android:layout_weight=".2"
+        android:id="@+id/menu_scrollview_buttons"
         android:layout_below="@+id/menu_edit_text_url"
-        android:paddingTop="32dp">
+        android:layout_centerHorizontal="true">
 
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/http_get"
-            android:id="@+id/menu_radio_button_get"
-            android:layout_weight="0.25"
-            />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/http_post"
-            android:id="@+id/menu_radio_button_post"
-            android:layout_weight="0.25"
-            />
+            <Button
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/action_search_professional"
+                android:id="@+id/button_search_proffesional"
+                android:layout_gravity="center_horizontal"/>
 
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/http_put"
-            android:id="@+id/menu_radio_button_put"
-            android:layout_weight="0.25"
-            />
+            <Button
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/action_view_profile"
+                android:id="@+id/button_view_profile"
+                android:layout_gravity="center_horizontal"/>
 
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/http_delete"
-            android:id="@+id/menu_radio_button_delete"
-            android:layout_weight="0.25"
-            />
+            <Button
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/action_edit_profile"
+                android:id="@+id/button_edit_profile"
+                android:layout_gravity="center_horizontal"/>
 
-    </RadioGroup>
+            <Button
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reset"
+                android:id="@+id/action_reset_fields"
+                android:layout_gravity="center_horizontal"/>
 
-    <TextView
-        style="@android:style/TextAppearance.Holo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Content"
-        android:id="@+id/menu_content_tittle"
-        android:layout_below="@+id/radio_group_menu"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/abc_background_cache_hint_selector_material_light"
-        android:textSize="24sp"
-        android:paddingTop="32dp"/>
+            <TextView
+                style="@android:style/TextAppearance.Holo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Content"
+                android:id="@+id/menu_content_tittle"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/abc_background_cache_hint_selector_material_light"
+                android:textSize="24sp"
+                android:paddingTop="32dp"
+                android:layout_below="@+id/menu_edit_text_url"
+                android:layout_gravity="center_horizontal"/>
 
-    <EditText
-        style="@style/Widget.AppCompat.EditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:id="@+id/menu_content_edit_text"
-        android:layout_below="@+id/menu_content_tittle"
-        android:background="#ffffff"
-        android:hint="POST/GET Content"
-        android:paddingTop="0dp"/>
+            <EditText
+                style="@style/Widget.AppCompat.EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:id="@+id/menu_content_edit_text"
+                android:layout_below="@+id/menu_content_tittle"
+                android:background="#ffffff"
+                android:hint="Response"
+                android:paddingTop="0dp"/>
 
-    <Button
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/action_submit"
-        android:id="@+id/menu_button_submit"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/menu_content_edit_text"
-        android:elevation="6dp"/>
+            <TextView
+                style="@android:style/TextAppearance.Holo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Payload"
+                android:id="@+id/menu_payload_tittle"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/abc_background_cache_hint_selector_material_light"
+                android:textSize="24sp"
+                android:paddingTop="32dp"
+                android:layout_gravity="center_horizontal"/>
+
+            <EditText
+                style="@style/Widget.AppCompat.EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:id="@+id/menu_payload_edit_text"
+                android:background="#ffffff"
+                android:hint="Payload"
+                android:paddingTop="0dp"/>
+
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>

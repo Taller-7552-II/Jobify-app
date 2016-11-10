@@ -7,26 +7,28 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class MenuFragment extends Fragment
 {
     EditText mUrlEditText;
-    EditText mContentEditText;
+    EditText mResponseEditText;
+    EditText mPayloadEditText;
 
-    RadioButton mRadioButtonGet;
-    RadioButton mRadioButtonPost;
-    RadioButton mRadioButtonPut;
-    RadioButton mRadioButtonDelete;
+    Button mSearchProfessionalButton;
+    Button mViewProfileButton;
+    Button mEditProfileButton;
+    Button mResetFieldsButton;
 
     private View mProgressView;
-
-    Button mSubmitButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -40,51 +42,96 @@ public class MenuFragment extends Fragment
     {
         View v = inflater.inflate(R.layout.fragment_menu, container, false);
 
-        mContentEditText = (EditText) v.findViewById(R.id.menu_content_edit_text);
+        mResponseEditText = (EditText) v.findViewById(R.id.menu_content_edit_text);
+        mPayloadEditText = (EditText) v.findViewById(R.id.menu_payload_edit_text);
         mUrlEditText = (EditText) v.findViewById(R.id.menu_edit_text_url);
-        mUrlEditText.setText("jobify-professional.herokuapp.com/db");
-        mRadioButtonGet = (RadioButton) v.findViewById(R.id.menu_radio_button_get);
-        mRadioButtonGet.setChecked(true);
-        mRadioButtonPost = (RadioButton) v.findViewById(R.id.menu_radio_button_post);
-        mRadioButtonPut = (RadioButton) v.findViewById(R.id.menu_radio_button_put);
-        mRadioButtonDelete = (RadioButton) v.findViewById(R.id.menu_radio_button_delete);
+        mUrlEditText.setText("/");
 
         mProgressView = v.findViewById(R.id.http_menu_progress);
 
-        mSubmitButton = (Button) v.findViewById(R.id.menu_button_submit);
-        mSubmitButton.setOnClickListener(new View.OnClickListener()
+        mSearchProfessionalButton = (Button) v.findViewById(R.id.button_search_proffesional);
+        mSearchProfessionalButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                SubmitRequest();
+                searchProfessional();
+            }
+        });
+
+        mViewProfileButton = (Button) v.findViewById(R.id.button_view_profile);
+        mViewProfileButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                viewProfile();
+            }
+        });
+
+        mEditProfileButton = (Button) v.findViewById(R.id.button_edit_profile);
+        mEditProfileButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                editProfile();
+            }
+        });
+
+        mResetFieldsButton = (Button) v.findViewById(R.id.action_reset_fields);
+        mResetFieldsButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                mResponseEditText.setText("");
+                mPayloadEditText.setText("");
             }
         });
 
         return v;
     }
 
-    private void SubmitRequest()
+    private void searchProfessional()
     {
-        mContentEditText.setText("");
         String urlSpec = "http://" + ServerHandler.get(getActivity()).getServerIP() + mUrlEditText.getText().toString();
-        if (mRadioButtonGet.isChecked())
-        {
-            showProgress(true);
-            GetAsyncTask getTask = new GetAsyncTask(urlSpec);
-            getTask.execute();
-        }
-        else if (mRadioButtonPost.isChecked())
-        {
-            showProgress(true);
-            PostAsyncTask postAsyncTask = new PostAsyncTask(urlSpec, mContentEditText.getText().toString());
-            postAsyncTask.execute();
-        }
-        else
-        {
-            mContentEditText.setText("Nope!");
-        }
+        showProgress(true);
+        GetAsyncTask getTask = new GetAsyncTask(urlSpec);
+        getTask.execute();
     }
+
+    private void viewProfile()
+    {
+        String urlSpec = "http://" + ServerHandler.get(getActivity()).getServerIP() + mUrlEditText.getText().toString();
+        showProgress(true);
+        GetAsyncTask getTask = new GetAsyncTask(urlSpec);
+        getTask.execute();
+    }
+
+    private void editProfile()
+    {
+        String urlSpec = "http://" + ServerHandler.get(getActivity()).getServerIP() + mUrlEditText.getText().toString();
+        showProgress(true);
+        if (mPayloadEditText.getText().toString().isEmpty())
+        {
+            try
+            {
+                JSONObject jsonParam = new JSONObject();
+                jsonParam.put("mail", "");
+                jsonParam.put("password", "");
+                jsonParam.put("name", "");
+                jsonParam.put("lastName", "");
+                mPayloadEditText.setText(jsonParam.toString());
+            } catch (JSONException e)
+            {
+                Log.e("Json Error", "Error creating Json File");
+            }
+        }
+        PostAsyncTask postAsyncTask = new PostAsyncTask(urlSpec, mPayloadEditText.getText().toString());
+        postAsyncTask.execute();
+    }
+
 
     /**
      * Shows the progress UI while doing a request
@@ -142,7 +189,7 @@ public class MenuFragment extends Fragment
         {
             showProgress(false);
             super.onPostExecute(s);
-            mContentEditText.setText(s);
+            mResponseEditText.setText(s);
         }
 
         @Override
@@ -174,6 +221,7 @@ public class MenuFragment extends Fragment
         {
             showProgress(false);
             super.onPostExecute(s);
+            mResponseEditText.setText(s);
         }
 
         @Override

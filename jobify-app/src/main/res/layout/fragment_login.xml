@@ -137,7 +137,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/debug_ip_edittext"
-                    android:hint="IP address"
+                    android:hint="IP/PORT 127.0.0.1:8080"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:textColor="#f8fcfc"

@@ -4,8 +4,14 @@
 
     <!-- Content Descriptions-->
     <string name="description_jobify_tittle">Jobify Application Icon</string>
+
     <!-- Strings related to login and signupMenu Screen-->
     <string name="prompt_content">Content</string>
+
+    <!-- App Actions -->
+    <string name="action_view_profile">View Profile</string>
+    <string name="action_edit_profile">Edit Profile</string>
+    <string name="action_search_professional">Search professional</string>
 
     <!-- Strings related to login and signup -->
     <string name="signup_label">Sign up</string>

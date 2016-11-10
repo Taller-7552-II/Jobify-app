@@ -17,6 +17,7 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -347,7 +351,7 @@ public class SignUpFragment extends Fragment implements LoaderManager.LoaderCall
      * Represents an asynchronous registration task used to register a new user
      *
      */
-    public class UserSignUpTask extends AsyncTask<Void, Void, Boolean>
+    public class UserSignUpTask extends AsyncTask<Void, Void, String>
     {
         private final User mUser;
 
@@ -357,13 +361,29 @@ public class SignUpFragment extends Fragment implements LoaderManager.LoaderCall
         }
 
         @Override
-        protected Boolean doInBackground(Void... params)
+        protected String doInBackground(Void... params)
         {
-            // TODO: Put new user to server
+            // TODO: Check response
             ServerHandler serverHandler = ServerHandler.get(getActivity());
             serverHandler.addUser(mUser);
 
+            String urlSpec = "http://" + ServerHandler.get(getActivity()).getServerIP() + mUser.getEmail();
+            String payload = "";
             try
+            {
+                JSONObject jsonParam = new JSONObject();
+                jsonParam.put("mail", mUser.getEmail());
+                jsonParam.put("password", mUser.getPassword());
+                jsonParam.put("name", mUser.getFirstName());
+                jsonParam.put("lastName", mUser.getLastName());
+                payload = jsonParam.toString();
+            }
+            catch(JSONException e)
+            {
+                Log.e("Json Error", "Error creating Json File");
+            }
+            return ServerHandler.get(getActivity()).POST(urlSpec, payload);
+            /*try
             {
                 // Simulate network access.
                 Thread.sleep(2000);
@@ -372,16 +392,28 @@ public class SignUpFragment extends Fragment implements LoaderManager.LoaderCall
                 return false;
             }
 
-            return true;
+            return true;*/
         }
 
         @Override
-        protected void onPostExecute(final Boolean success)
+        protected void onPostExecute(final String response)
         {
             mSignUpTask = null;
             showProgress(false);
 
-            if (success)
+            String status;
+            try
+            {
+                JSONObject httpResponse = new JSONObject(response);
+                status = httpResponse.getString("status");
+            }
+            catch (JSONException e)
+            {
+                status = "Error parsing response";
+                Log.e("Json Error", "Error parsing Sign up response");
+            }
+            Toast.makeText(getActivity(), status, Toast.LENGTH_SHORT).show();
+           /* if (success)
             {
                 Toast.makeText(getActivity(), getString(R.string.prompt_registration_complete), Toast.LENGTH_SHORT).show();
                 getActivity().finish();
@@ -389,7 +421,7 @@ public class SignUpFragment extends Fragment implements LoaderManager.LoaderCall
             {
                 mPasswordEditText.setError(getString(R.string.error_incorrect_password));
                 mPasswordEditText.requestFocus();
-            }
+            }*/
         }
 
         @Override

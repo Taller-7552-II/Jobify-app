@@ -1,8 +1,5 @@
 package com.fiuba.tallerii.jobify;
 
-/**
- * Created by Gonzalo on 03/10/2016.
- */
 public class User
 {
     private String mFirstName;

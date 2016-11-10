@@ -22,6 +22,8 @@ public class ServerHandler
     private static ServerHandler sServerHandler;
 
     private String mServerIP;
+
+    private String mConnectionToken;
     private boolean mAuthenticated;
 
     /*****************************************************************
@@ -62,6 +64,11 @@ public class ServerHandler
         mDummyCredentials = new ArrayList<String>();
     }
 
+    public void setConnectionToken(String connectionToken)
+    {
+        mConnectionToken = connectionToken;
+    }
+
     public boolean Authenticate(String email, String password)
     {
         return true;
@@ -77,7 +84,6 @@ public class ServerHandler
         mServerIP = serverIP;
     }
 
-
     /*******************************************
      * ASYNC Methods
      *******************************************/
@@ -90,6 +96,7 @@ public class ServerHandler
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             //add header
             connection.setRequestProperty("User-Agent", USER_AGENT);
+            connection.setRequestProperty("conn_token", mConnectionToken);
             //set request as GET
             connection.setRequestMethod("GET");
 
@@ -132,7 +139,8 @@ public class ServerHandler
             connection.setRequestProperty("User-Agent", USER_AGENT);
             connection.setRequestProperty("Accept-Language", "en-US,en;q=0.8");
             connection.setRequestProperty("content-type", "application/json");
-            //set request as GET
+            connection.setRequestProperty("conn_token", mConnectionToken);
+            //set request as POST
             connection.setRequestMethod("POST");
 
             //Create the data
@@ -169,8 +177,4 @@ public class ServerHandler
         return "";
 
     }
-
-
-
-
 }
