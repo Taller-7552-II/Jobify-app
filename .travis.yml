@@ -32,7 +32,7 @@ before_install:
   - chmod +x gradlew
 
 after_success:
-  - ./gradlew jacocoTestReport coveralls
+  - ./gradlew jacocoDebugReport coveralls
 
 after_failure:
   - ./gradlew clean check --debug
