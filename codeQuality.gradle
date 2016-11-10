@@ -34,6 +34,8 @@ task jacocoTestReport(type: JacocoReport, dependsOn: "test") {
 
 }
 
+check.dependsOn jacocoTestReport
+
 coveralls {
     jacocoReportPath 'build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml'
 }
