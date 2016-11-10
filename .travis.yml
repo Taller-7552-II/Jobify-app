@@ -27,7 +27,7 @@ before_script:
 
 script:
   - ./gradlew clean build jacocoTestReport coveralls -Dscan --configure-on-demand --parallel --stacktrace
-  - ./gradlew androidTest
+  - ./gradlew test
 
 before_install:
   - chmod +x gradlew
