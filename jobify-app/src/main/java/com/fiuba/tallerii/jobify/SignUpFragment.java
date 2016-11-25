@@ -365,7 +365,6 @@ public class SignUpFragment extends Fragment implements LoaderManager.LoaderCall
         {
             // TODO: Check response
             ServerHandler serverHandler = ServerHandler.get(getActivity());
-            serverHandler.addUser(mUser);
 
             String urlSpec = "http://" + ServerHandler.get(getActivity()).getServerIP() + mUser.getEmail();
             String payload = "";
@@ -377,11 +376,13 @@ public class SignUpFragment extends Fragment implements LoaderManager.LoaderCall
                 jsonParam.put("name", mUser.getFirstName());
                 jsonParam.put("lastName", mUser.getLastName());
                 payload = jsonParam.toString();
+                Log.d("Jobify", payload);
             }
             catch(JSONException e)
             {
-                Log.e("Json Error", "Error creating Json File");
+                Log.e("Jobify", "Error creating Json File");
             }
+
             return ServerHandler.get(getActivity()).POST(urlSpec, payload);
             /*try
             {
@@ -410,7 +411,7 @@ public class SignUpFragment extends Fragment implements LoaderManager.LoaderCall
             catch (JSONException e)
             {
                 status = "Error parsing response";
-                Log.e("Json Error", "Error parsing Sign up response");
+                Log.e("Jobify", "Error parsing Sign up response");
             }
             Toast.makeText(getActivity(), status, Toast.LENGTH_SHORT).show();
            /* if (success)

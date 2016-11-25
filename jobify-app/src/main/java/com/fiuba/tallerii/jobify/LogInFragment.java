@@ -179,8 +179,7 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
 
     private void SubmitIP(String ip)
     {
-        ServerHandler serverHandler = ServerHandler.get(getActivity());
-        serverHandler.setServerIP(ip);
+        ServerHandler.get(getActivity()).setServerIP(ip);
         Toast.makeText(getActivity(), "IP: " + ip + " submitted!", Toast.LENGTH_SHORT).show();
     }
 
@@ -420,11 +419,11 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
         private final String mPassword;
         boolean mUseAuthentication;
 
-        UserLoginTask(String email, String password, boolean useAthentication)
+        UserLoginTask(String email, String password, boolean useAuthentication)
         {
             mEmail = email;
             mPassword = password;
-            mUseAuthentication = useAthentication;
+            mUseAuthentication = useAuthentication;
         }
 
         @Override
@@ -432,22 +431,8 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
         {
             // TODO: attempt authentication against a network service. APPSERVER/HEROKU
 
-            /*try
-            {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e)
-            {
-                return false;
-            }*/
-
-            if (!mUseAuthentication)
-            {
-                return "";
-            }
 
             String urlSpec = "http://" + ServerHandler.get(getActivity()).getServerIP() + "/sessions/" + mEmail;
-            ServerHandler serverHandler = ServerHandler.get(getActivity());
             String loginParams = "";
             try
             {
@@ -458,10 +443,10 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
             }
             catch(JSONException e)
             {
-                Log.e("Json Error", "Error creating Login Json File");
+                Log.e("Jobify", "Error creating Login Json File");
             }
 
-            return serverHandler.POST(urlSpec, loginParams);
+            return ServerHandler.get(getActivity()).POST(urlSpec, loginParams);
            /* ArrayList<String> credentials = serverHandler.getCredentials();
             for (String credential : credentials)
             {
@@ -482,24 +467,13 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
             mAuthTask = null;
             showProgress(false);
 
-            String status;
-            try
-            {
-                JSONObject loginResponse = new JSONObject(response);
-                status = loginResponse.getString("status");
-                String connToken = loginResponse.getString("conn_token");
-                ServerHandler.get(getActivity()).setConnectionToken(connToken);;
-            }
-            catch (JSONException e)
-            {
-                status = "Error parsing response";
-                Log.e("Json Error", "Error parsing Sign up response");
-            }
-            Toast.makeText(getActivity(), status, Toast.LENGTH_SHORT).show();
+            boolean success = verifyResponse(response);
+
+            //TODO: use login authentication result
            /* if (success)
             {*/
                 // Succesful Authentication
-                Intent intent = new Intent(getActivity(), MainMenuActivity.class);
+                Intent intent = new Intent(getActivity(), MainScreenActivity.class);
                 //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
            /* } else
@@ -509,6 +483,30 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
                 mPasswordEditText.setError(getString(R.string.error_incorrect_password));
                 mPasswordEditText.requestFocus();
             }*/
+        }
+
+        private boolean verifyResponse(String response)
+        {
+            boolean success = false;
+            String toastMessage;
+            try
+            {
+                JSONObject loginResponse = new JSONObject(response);
+                toastMessage = loginResponse.getString("status");
+                String connToken = loginResponse.getString("conn_token");
+                ServerHandler.get(getActivity()).setConnectionToken(connToken);
+                Log.i("Jobify", "Connected with token: " + connToken);
+            }
+            catch (JSONException e)
+            {
+                success = false;
+                toastMessage = "Log in failed";
+                Log.e("Jobify", "Error parsing Sign in response " + e.getMessage());
+            }
+            Toast.makeText(getActivity(), toastMessage, Toast.LENGTH_SHORT).show();
+
+            //TODO devolver success
+            return true;
         }
 
         @Override
