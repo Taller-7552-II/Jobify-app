@@ -22,6 +22,7 @@
     <string name="prompt_email_username">Username/Email</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_jobs">Jobs</string>
+    <string name="notification_sent">A notification has been sent</string>
     <string name="prompt_skills">Skills</string>
     <string name="prompt_password">Password</string>
     <string name="action_submit">Submit</string>
@@ -31,6 +32,9 @@
     <string name="action_sign_in_short">Sign in</string>
     <string name="action_sign_up_short">Sign up</string>
     <string name="error_invalid_login_info">Invalid password or email</string>
+    <string name="error_duplicated_mail">Email is taken</string>
+    <string name="error">Error</string>
+    <string name="error_add_contact">Invalid username</string>
     <string name="error_invalid_name">This name is invalid</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>

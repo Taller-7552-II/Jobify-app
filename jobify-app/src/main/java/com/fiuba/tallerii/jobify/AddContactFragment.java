@@ -25,6 +25,8 @@ public class AddContactFragment extends Fragment
     private EditText mUsernameEditText;
     private Button mAddContactButton;
 
+    private static final String ADD_FRIEND_RESPONSE = "Notification sent";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
@@ -106,42 +108,47 @@ public class AddContactFragment extends Fragment
         protected String doInBackground(Void... params)
         {
             ServerHandler serverHandler = ServerHandler.get(getActivity());
-            String url = "http://" + serverHandler.getServerIP() + "/users/" + serverHandler.getUsername() + "/friends/";
+            String url = "http://" + serverHandler.getServerIP() + "/users/" + serverHandler.getUsername() + "/addFriend/" + mUsername;
 
-            String postParams = "";
-            try
+            String postParams = "{}";
+            /*try
             {
                 JSONObject jsonAddContactParams = new JSONObject();
-                jsonAddContactParams.put("mail", mUsername);
+                jsonAddContactParams.put("username", mUsername);
                 postParams = jsonAddContactParams.toString();
             }
             catch(JSONException e)
             {
                 Log.e("Jobify", "Error creating add Contact Json File");
-            }
+            }*/
             return serverHandler.POST(url, postParams);
         }
 
         @Override
         protected void onPostExecute(final String response)
         {
-            String toastMessage = "";
+            Log.d("Jobify", "Add friend response: " + response);
             try
             {
                 JSONObject jsonObjectResponse = new JSONObject(response);
-
-                boolean success = true; //cambiar parseando el string
+                String status = jsonObjectResponse.getString("status");
+                boolean success = status.equals(ADD_FRIEND_RESPONSE); //cambiar parseando el string
                 if (success)
                 {
-                    toastMessage = getString(R.string.response_sync_success);
+                    Toast.makeText(getActivity(), getString(R.string.notification_sent), Toast.LENGTH_LONG).show();
+                    //TODO AGREGAR USUARIO BIEN
+                    Contact contact = new Contact("nuevo", mUsername, null);
+                    InformationHolder.get().addContact(contact);
+
+                    getActivity().finish();
                 }
             }
             catch (JSONException e)
             {
-                toastMessage = getString(R.string.response_sync_failed);
+                mUsernameEditText.setError(getString(R.string.error_add_contact));
+                mUsernameEditText.requestFocus();
                 Log.e("Jobify", "Error parsing add contact response. " + e.getMessage());
             }
-            Toast.makeText(getActivity(), toastMessage, Toast.LENGTH_SHORT).show();
         }
 
 

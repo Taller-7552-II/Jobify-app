@@ -2,46 +2,34 @@ package com.fiuba.tallerii.jobify;
 
 import android.graphics.Bitmap;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Contact
 {
-    private String mFirstName;
-    private String mLastName;
+    private String mName;
     private String mEmail;
     private Bitmap mPicture;
+    private List<Skill> mSkills;
+    private List<Job> mJobs;
 
-    public Contact()
+    public Contact(String name, String email, Bitmap pictureBitmap)
     {
-        mFirstName = "unnamed";
-        mLastName = "unnamed";
-        mEmail = "";
-    }
-
-    public Contact(String firstName, String lastName, String email, Bitmap pictureBitmap)
-    {
-        mFirstName = firstName;
-        mLastName = lastName;
+        mName = name;
         mEmail = email;
         mPicture = pictureBitmap;
+        mSkills = new ArrayList<>();
+        mJobs = new ArrayList<>();
     }
 
-    public String getFirstName()
+    public String getName()
     {
-        return mFirstName;
+        return mName;
     }
 
-    public void setFirstName(String firstName)
+    public void setName(String name)
     {
-        mFirstName = firstName;
-    }
-
-    public String getLastName()
-    {
-        return mLastName;
-    }
-
-    public void setLastName(String lastName)
-    {
-        mLastName = lastName;
+        mName = name;
     }
 
     public String getEmail()
@@ -64,4 +52,13 @@ public class Contact
         mPicture = picture;
     }
 
+    public List<Skill> getSkills()
+    {
+        return mSkills;
+    }
+
+    public List<Job> getJobs()
+    {
+        return mJobs;
+    }
 }
