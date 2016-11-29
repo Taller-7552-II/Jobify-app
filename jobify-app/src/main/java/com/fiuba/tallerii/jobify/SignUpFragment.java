@@ -366,12 +366,12 @@ public class SignUpFragment extends Fragment implements LoaderManager.LoaderCall
             // TODO: Check response
             ServerHandler serverHandler = ServerHandler.get(getActivity());
 
-            String urlSpec = "http://" + ServerHandler.get(getActivity()).getServerIP() + mUser.getEmail();
+            String urlSpec = "http://" + ServerHandler.get(getActivity()).getServerIP() + "/users/";
             String payload = "";
             try
             {
                 JSONObject jsonParam = new JSONObject();
-                jsonParam.put("mail", mUser.getEmail());
+                jsonParam.put("username", mUser.getEmail());
                 jsonParam.put("password", mUser.getPassword());
                 jsonParam.put("name", mUser.getFirstName());
                 jsonParam.put("lastName", mUser.getLastName());
@@ -402,6 +402,7 @@ public class SignUpFragment extends Fragment implements LoaderManager.LoaderCall
             mSignUpTask = null;
             showProgress(false);
 
+            Log.d("Jobify", "Sign up response: " + response);
             String status;
             try
             {

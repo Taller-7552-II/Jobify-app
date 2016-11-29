@@ -1,16 +1,27 @@
 package com.fiuba.tallerii.jobify;
 
+import android.graphics.Bitmap;
+
 public class Contact
 {
     private String mFirstName;
     private String mLastName;
     private String mEmail;
+    private Bitmap mPicture;
 
     public Contact()
     {
         mFirstName = "unnamed";
         mLastName = "unnamed";
         mEmail = "";
+    }
+
+    public Contact(String firstName, String lastName, String email, Bitmap pictureBitmap)
+    {
+        mFirstName = firstName;
+        mLastName = lastName;
+        mEmail = email;
+        mPicture = pictureBitmap;
     }
 
     public String getFirstName()
@@ -41,6 +52,16 @@ public class Contact
     public void setEmail(String email)
     {
         mEmail = email;
+    }
+
+    public Bitmap getPicture()
+    {
+        return mPicture;
+    }
+
+    public void setPicture(Bitmap picture)
+    {
+        mPicture = picture;
     }
 
 }

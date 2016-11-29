@@ -42,7 +42,7 @@ public class ServerHandler
     private ServerHandler(Context context)
     {
         mUsername = "none";
-        mServerIP = "127.0.0.1";
+        mServerIP = "192.168.0.19:8000";
         mAuthenticated = false;
     }
 
@@ -101,7 +101,7 @@ public class ServerHandler
 
             if (connection.getResponseCode() == HttpURLConnection.HTTP_OK)
             {
-                Log.i("Jobify", "Successful connection to " + urlSpec);
+                Log.d("Jobify", "Successful connection to " + urlSpec);
                 InputStream responseBody = connection.getInputStream();
                 InputStreamReader responseBodyReader = new InputStreamReader(responseBody, "UTF-8");
                 BufferedReader streamReader = new BufferedReader(responseBodyReader);
@@ -157,7 +157,7 @@ public class ServerHandler
 
             //get response
             if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                Log.i("Jobify", "Succesful connection to " + urlSpec);
+                Log.d("Jobify", "Succesful connection to " + urlSpec);
                 // Get InputStream
                 InputStream is = connection.getInputStream();
                 // Convert the InputStream into a string
@@ -210,7 +210,7 @@ public class ServerHandler
 
             //get response
             if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                Log.i("Jobify", "Succesful connection to " + urlSpec);
+                Log.d("Jobify", "Succesful connection to " + urlSpec);
                 // Get InputStream
                 InputStream is = connection.getInputStream();
                 // Convert the InputStream into a string

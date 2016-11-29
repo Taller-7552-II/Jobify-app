@@ -437,7 +437,7 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
             try
             {
                 JSONObject jsonLoginParams= new JSONObject();
-                jsonLoginParams.put("mail", mEmail);
+                jsonLoginParams.put("username", mEmail);
                 jsonLoginParams.put("password", mPassword);
                 loginParams = jsonLoginParams.toString();
             }

@@ -17,10 +17,15 @@
     <string name="signup_label">Sign up</string>
     <string name="prompt_registration_complete">Congratulation and thank you for joining us!</string>
     <string name="prompt_first_name">First name</string>
+    <string name="prompt_name">Name</string>
     <string name="prompt_last_name">Last name</string>
+    <string name="prompt_email_username">Username/Email</string>
     <string name="prompt_email">Email</string>
+    <string name="prompt_jobs">Jobs</string>
+    <string name="prompt_skills">Skills</string>
     <string name="prompt_password">Password</string>
     <string name="action_submit">Submit</string>
+    <string name="action_add_contact">Add contact</string>
     <string name="action_sign_up">Sign up</string>
     <string name="action_sign_in">Sign in</string>
     <string name="action_sign_in_short">Sign in</string>
@@ -29,6 +34,7 @@
     <string name="error_invalid_name">This name is invalid</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
+    <string name="error_invalid_username">This username is invalid</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email
@@ -41,5 +47,9 @@
     <string name="http_get">Get</string>
     <string name="http_post">Post</string>
     <string name="http_delete">Delete</string>
+
+    <!-- Responses -->
+    <string name="response_sync_success">Successfully sync with server</string>
+    <string name="response_sync_failed">Sync with server failed</string>
 
 </resources>

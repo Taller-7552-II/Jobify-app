@@ -31,29 +31,21 @@ public class ContactsHolder
         return mContacts;
     }
 
-    public Contact getContactWithName(String name)
+    // add a contact if it doesn't exist in the list.
+    // a contact is considered duplicated if it has the same email(username) as another one in the list
+    public void addContact(Contact contactToAdd)
     {
         for (Contact contact: mContacts)
         {
-            if (contact.getFirstName().equals(name))
+            if (contact.getEmail().equals(contactToAdd.getEmail()))
             {
-                return contact;
+                //exit if contact exists in the list
+                return;
             }
         }
-        return null;
+        mContacts.add(contactToAdd);
     }
 
-    public Contact getContactWithEmail(String email)
-    {
-        for (Contact contact: mContacts)
-        {
-            if (contact.getEmail().equals(email))
-            {
-                return contact;
-            }
-        }
-        return null;
-    }
 
 
 }
