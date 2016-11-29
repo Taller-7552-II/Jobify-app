@@ -6,6 +6,7 @@ import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -32,6 +33,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -65,6 +67,14 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
     private EditText mIPEditText;
     private Button mSubmitIPButton;
     private CheckBox mCheckbox;
+
+    private boolean mLoggingIn = false;
+
+    private static final String FRIENDLIST_FIELD = "friendList";
+    private static final String NAME_FIELD = "name";
+    private static final String PICTURE_FIELD = "picture";
+    private static final String SKILLS_FIELD = "skills";
+    private static final String JOBS_FIELD = "jobs";
     //**************************************************************
 
     @Override
@@ -78,6 +88,8 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
                              Bundle savedInstanceState)
     {
         View v = inflater.inflate(R.layout.fragment_login, container, false);
+
+        mLoggingIn = false;
 
         // Set up the login form.
         mEmailAutocompleteText = (AutoCompleteTextView) v.findViewById(R.id.email);
@@ -152,6 +164,13 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
         mLoginFormView = v.findViewById(R.id.login_form);
         mProgressView = v.findViewById(R.id.login_progress);
         return v;
+    }
+
+    private void joinApplication()
+    {
+        Intent intent = new Intent(getActivity(), MainScreenActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 
     @Override
@@ -300,9 +319,17 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
         {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
-            showProgress(true);
-            mAuthTask = new UserLoginTask(email, password, mCheckbox.isChecked());
-            mAuthTask.execute((Void) null);
+            if (mLoggingIn)
+            {
+                return;
+            }
+            else
+            {
+                mLoggingIn = true;
+                showProgress(true);
+                mAuthTask = new UserLoginTask(email, password, mCheckbox.isChecked());
+                mAuthTask.execute((Void) null);
+            }
         }
     }
 
@@ -429,8 +456,6 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
         @Override
         protected String doInBackground(Void... params)
         {
-            // TODO: attempt authentication against a network service. APPSERVER/HEROKU
-
 
             String urlSpec = "http://" + ServerHandler.get(getActivity()).getServerIP() + "/sessions/";
             String loginParams = "";
@@ -447,68 +472,52 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
             }
 
             return ServerHandler.get(getActivity()).POST(urlSpec, loginParams);
-           /* ArrayList<String> credentials = serverHandler.getCredentials();
-            for (String credential : credentials)
-            {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail))
-                {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
-            }*/
-
-            //return false;
         }
 
         @Override
         protected void onPostExecute(final String response)
         {
             mAuthTask = null;
-            showProgress(false);
 
-            Log.d("Jobify", "Sign up response: " + response);
+            Log.d("Jobify", "Log in response: " + response);
 
             boolean success = verifyResponse(response);
 
-            //TODO: use login authentication result
-           /* if (success)
-            {*/
+            if (success)
+            {
                 // Succesful Authentication
-                Intent intent = new Intent(getActivity(), MainScreenActivity.class);
-                //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-           /* } else
+                // get data from server to initialize the application
+                RequestUserInformationAsyncTask requestInfoTask = new RequestUserInformationAsyncTask();
+                requestInfoTask.execute((Void) null);
+
+            }
+            else
             {
                 // Invalid mail and/or password
                 Toast.makeText(getActivity(), getString(R.string.error_invalid_login_info), Toast.LENGTH_SHORT).show(); // DEBUG
-                mPasswordEditText.setError(getString(R.string.error_incorrect_password));
                 mPasswordEditText.requestFocus();
-            }*/
+            }
         }
 
         private boolean verifyResponse(String response)
         {
-            boolean success = false;
-            String toastMessage;
+            boolean success;
             try
             {
                 JSONObject loginResponse = new JSONObject(response);
-                toastMessage = loginResponse.getString("status");
                 String connToken = loginResponse.getString("conn_token");
                 ServerHandler.get(getActivity()).setConnectionToken(connToken);
+                ServerHandler.get(getActivity()).setUsername(mEmail);
                 Log.i("Jobify", "Connected with token: " + connToken);
+
+                success = true;
             }
             catch (JSONException e)
             {
                 success = false;
-                toastMessage = "Log in failed";
                 Log.e("Jobify", "Error parsing Sign in response " + e.getMessage());
             }
-            Toast.makeText(getActivity(), toastMessage, Toast.LENGTH_SHORT).show();
-
-            //TODO devolver success
-            return true;
+            return success;
         }
 
         @Override
@@ -516,6 +525,194 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
         {
             mAuthTask = null;
             showProgress(false);
+            mLoggingIn = false;
         }
     }
+
+    /*
+    Async class for requesting user information
+ */
+    public class RequestUserInformationAsyncTask extends AsyncTask<Void, Void, Boolean>
+    {
+        private String mProfileData;
+        private List<String> mContactsData;
+
+        public RequestUserInformationAsyncTask()
+        {
+            mContactsData = new ArrayList<>();
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params)
+        {
+            //Parsea la informacion de perfil y el perfil de cada amigo
+            ServerHandler serverHandler = ServerHandler.get(getActivity());
+            String url = "http://" + serverHandler.getServerIP() + "/users/" + serverHandler.getUsername();
+            mProfileData = serverHandler.GET(url);
+            Log.d("Jobify", "Profile response: " + mProfileData);
+
+            if (!parseBasicInfo(mProfileData))
+            {
+                return false;
+            }
+            if (!parseFriendsList(mProfileData))
+            {
+                return false;
+            }
+
+            for (int i = 0; i < mContactsData.size(); ++i)
+            {
+                String contactMail = mContactsData.get(i);
+                String requestURL = "http://" + serverHandler.getServerIP() + "/users/" + contactMail;
+                String response = serverHandler.GET(requestURL);
+                Log.d("Jobify", "Contact " + contactMail + " response: " + response);
+
+                if (!parseFriendProfile(response, contactMail))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+
+        @Override
+        protected void onPostExecute(Boolean success)
+        {
+            showProgress(false);
+            String toastMessage;
+
+            if (success)
+            {
+                toastMessage = "Welcome to Jobify!";
+                joinApplication();
+            }
+            else
+            {
+                toastMessage = "Log in failed";
+            }
+
+            Toast.makeText(getActivity(), toastMessage, Toast.LENGTH_SHORT).show();
+            mLoggingIn = false;
+        }
+
+        private boolean parseBasicInfo(String response)
+        {
+            boolean success = true;
+            try
+            {
+                JSONObject jsonContactsObject = new JSONObject(response);
+                ImageConverter imageConverter = new ImageConverter();
+
+                String name = jsonContactsObject.getString(NAME_FIELD);
+                Log.d("jobify", "name: " + name);
+                Bitmap picture = imageConverter.decodeFromBase64ToBitmap(jsonContactsObject.getString(PICTURE_FIELD));
+
+                InformationHolder.get().setMail(ServerHandler.get(getActivity()).getUsername());
+                InformationHolder.get().setName(name);
+                InformationHolder.get().setProfilePicture(picture);
+
+                //TODO SKILLS Y JOBS
+
+            }
+            catch (JSONException e)
+            {
+                success = false;
+                Log.e("Jobify", "Error parsing user information request response. " + e.getMessage());
+            }
+            return success;
+        }
+
+        private boolean parseFriendsList(String response)
+        {
+            boolean success = true;
+            try
+            {
+                JSONObject jsonContactsObject = new JSONObject(response);
+                JSONArray jsonContactsArray = jsonContactsObject.getJSONArray(FRIENDLIST_FIELD);
+
+                ImageConverter imageConverter = new ImageConverter();
+                InformationHolder informationHolder = InformationHolder.get();
+                for(int i=0; i < jsonContactsArray.length(); i++)
+                {
+                    // iterate the JSONArray and extract each contact
+                    String contactUsername = jsonContactsArray.getString(i);
+                    Log.d("Jobify", "Friend found: " + contactUsername);
+                    mContactsData.add(contactUsername); // agrega mail a la lista para parsear luego los contactos
+                }
+            }
+            catch (JSONException e)
+            {
+                success = false;
+                Log.e("Jobify", "Error parsing friends response. " + e.getMessage());
+            }
+            return success;
+        }
+
+        private boolean parseFriendProfile(String response, String friendUsername)
+        {
+            boolean success = true;
+            try
+            {
+                JSONObject jsonContactsObject = new JSONObject(response);
+                ImageConverter imageConverter = new ImageConverter();
+
+                String contactName = jsonContactsObject.getString(NAME_FIELD);
+                Log.d("jobify", "friend name: " + contactName);
+                Bitmap picture = imageConverter.decodeFromBase64ToBitmap(jsonContactsObject.getString(PICTURE_FIELD));
+
+                Contact contact = new Contact(contactName, friendUsername, picture);
+                //TODO agregar skills y jobs
+                InformationHolder.get().addContact(contact);
+
+            }
+            catch (JSONException e)
+            {
+                success = false;
+                Log.e("Jobify", "Error parsing user information request response. " + e.getMessage());
+            }
+            return success;
+        }
+
+       /* private void parseSkills(String response)
+        {
+            boolean success = true;
+            try
+            {
+                JSONObject jsonContactsObject = new JSONObject(response);
+                JSONArray jsonContactsArray = jsonContactsObject.getJSONArray(SKILLS_FIELD);
+
+                ImageConverter imageConverter = new ImageConverter();
+                InformationHolder informationHolder = InformationHolder.get();
+                for(int i=0; i < jsonContactsArray.length(); i++)
+                {
+                    // iterate the JSONArray and extract each contact
+                    String skillTittle = jsonContactsArray.getString(i);
+
+                    String contactName = jsonContactsObject.getString(NAME_FIELD);
+                    Bitmap picture = imageConverter.decodeFromBase64ToBitmap(jsonContactsObject.getString(PICTURE_FIELD));
+
+                    // create contact and add it to the list
+                    Contact contact = new Contact(contactName, contactUsername, picture);
+                    informationHolder.addContact(contact);
+                }
+            }
+            catch (JSONException e)
+            {
+                success = false;
+                Log.e("Jobify", "Error parsing contact request response. " + e.getMessage());
+            }
+            return success;
+        }*/
+
+
+        @Override
+        protected void onCancelled()
+        {
+            mLoggingIn = false;
+            showProgress(false);
+        }
+    }
+
 }

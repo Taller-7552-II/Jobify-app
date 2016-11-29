@@ -61,6 +61,9 @@ public class SignUpFragment extends Fragment implements LoaderManager.LoaderCall
 
     private Button mSignUpButton;
 
+    private final String SUCCESSFULLY_SIGN_UP_STRING = "User created successfuly";
+    private final String DUPLICATED_USER = "User taken";
+
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -399,6 +402,8 @@ public class SignUpFragment extends Fragment implements LoaderManager.LoaderCall
         @Override
         protected void onPostExecute(final String response)
         {
+            boolean success = false;
+            boolean userTaken = false;
             mSignUpTask = null;
             showProgress(false);
 
@@ -408,22 +413,39 @@ public class SignUpFragment extends Fragment implements LoaderManager.LoaderCall
             {
                 JSONObject httpResponse = new JSONObject(response);
                 status = httpResponse.getString("status");
+                if (status.equals(SUCCESSFULLY_SIGN_UP_STRING))
+                {
+                    success = true;
+                }
+                if (status.equals(DUPLICATED_USER))
+                {
+                    success = false;
+                    userTaken = true;
+                }
             }
             catch (JSONException e)
             {
+                success = false;
                 status = "Error parsing response";
                 Log.e("Jobify", "Error parsing Sign up response");
             }
             Toast.makeText(getActivity(), status, Toast.LENGTH_SHORT).show();
-           /* if (success)
+            if (success)
             {
-                Toast.makeText(getActivity(), getString(R.string.prompt_registration_complete), Toast.LENGTH_SHORT).show();
                 getActivity().finish();
-            } else
+            }
+            else
             {
-                mPasswordEditText.setError(getString(R.string.error_incorrect_password));
+                if (userTaken)
+                {
+                    mPasswordEditText.setError(getString(R.string.error_duplicated_mail));
+                }
+                else
+                {
+                    mPasswordEditText.setError(getString(R.string.error));
+                }
                 mPasswordEditText.requestFocus();
-            }*/
+            }
         }
 
         @Override
@@ -432,6 +454,7 @@ public class SignUpFragment extends Fragment implements LoaderManager.LoaderCall
             mSignUpTask = null;
             showProgress(false);
         }
+
     }
 
 }

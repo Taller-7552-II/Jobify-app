@@ -25,6 +25,8 @@ public class AddContactFragment extends Fragment
     private EditText mUsernameEditText;
     private Button mAddContactButton;
 
+    private static final String ADD_FRIEND_RESPONSE = "Notification sent";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
@@ -106,13 +108,13 @@ public class AddContactFragment extends Fragment
         protected String doInBackground(Void... params)
         {
             ServerHandler serverHandler = ServerHandler.get(getActivity());
-            String url = "http://" + serverHandler.getServerIP() + "/users/" + serverHandler.getUsername() + "/friends/";
+            String url = "http://" + serverHandler.getServerIP() + "/users/" + serverHandler.getUsername() + "/addFriend/" + mUsername;
 
             String postParams = "";
             try
             {
-                JSONObject jsonAddContactParams = new JSONObject();
-                jsonAddContactParams.put("mail", mUsername);
+                JSONObject jsonAddContactParams = new JSONObject(postParams);
+                //jsonAddContactParams.put("username", mUsername);
                 postParams = jsonAddContactParams.toString();
             }
             catch(JSONException e)
@@ -126,14 +128,20 @@ public class AddContactFragment extends Fragment
         protected void onPostExecute(final String response)
         {
             String toastMessage = "";
+            Log.d("Jobify", "Add friend response: " + response);
             try
             {
                 JSONObject jsonObjectResponse = new JSONObject(response);
-
-                boolean success = true; //cambiar parseando el string
+                String status = jsonObjectResponse.getString("status");
+                boolean success = status.equals(ADD_FRIEND_RESPONSE); //cambiar parseando el string
                 if (success)
                 {
                     toastMessage = getString(R.string.response_sync_success);
+                    //TODO AGREGAR USUARIO BIEN
+                    Contact contact = new Contact("nuevo", mUsername, null);
+                    InformationHolder.get().addContact(contact);
+
+                    getActivity().finish();
                 }
             }
             catch (JSONException e)
