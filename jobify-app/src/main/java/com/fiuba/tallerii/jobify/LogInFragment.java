@@ -547,7 +547,7 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
         {
             //Parsea la informacion de perfil y el perfil de cada amigo
             ServerHandler serverHandler = ServerHandler.get(getActivity());
-            String url = "http://" + serverHandler.getServerIP() + "/users/" + serverHandler.getUsername();
+            String url = "http://" + serverHandler.getServerIP() + "/users/" + serverHandler.getUsername() + "/profile/";
             mProfileData = serverHandler.GET(url);
             Log.d("Jobify", "Profile response: " + mProfileData);
 
@@ -563,7 +563,7 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
             for (int i = 0; i < mContactsData.size(); ++i)
             {
                 String contactMail = mContactsData.get(i);
-                String requestURL = "http://" + serverHandler.getServerIP() + "/users/" + contactMail;
+                String requestURL = "http://" + serverHandler.getServerIP() + "/users/" + contactMail + "/profile/";
                 String response = serverHandler.GET(requestURL);
                 Log.d("Jobify", "Contact " + contactMail + " response: " + response);
 
