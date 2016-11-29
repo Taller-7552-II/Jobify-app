@@ -432,7 +432,7 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
             // TODO: attempt authentication against a network service. APPSERVER/HEROKU
 
 
-            String urlSpec = "http://" + ServerHandler.get(getActivity()).getServerIP() + "/sessions/" + mEmail;
+            String urlSpec = "http://" + ServerHandler.get(getActivity()).getServerIP() + "/sessions/";
             String loginParams = "";
             try
             {
@@ -466,6 +466,8 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
         {
             mAuthTask = null;
             showProgress(false);
+
+            Log.d("Jobify", "Sign up response: " + response);
 
             boolean success = verifyResponse(response);
 
