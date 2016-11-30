@@ -50,13 +50,13 @@ public class MainScreenActivity extends AppCompatActivity
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new ProfileFragment(), "Profile");
         adapter.addFragment(new ContactsFragment(), "Contacts");
-        adapter.addFragment(new MenuFragment(), "Menu2");
+        adapter.addFragment(new NotificationsFragment(), "Notifications");
         adapter.addFragment(new MenuFragment(), "Menu4");
         viewPager.setAdapter(adapter);
     }
 
     /*
-        Adapter Class for managing tabs
+        Adapter Class for managing tabs1
 
      */
     class ViewPagerAdapter extends FragmentPagerAdapter
