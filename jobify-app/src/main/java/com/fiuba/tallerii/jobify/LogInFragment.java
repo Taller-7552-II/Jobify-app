@@ -75,6 +75,7 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
     private static final String PICTURE_FIELD = "picture";
     private static final String SKILLS_FIELD = "skills";
     private static final String JOBS_FIELD = "jobs";
+    private static final String NOTIFICATIONS_FIELD = "notificaciones";
     //**************************************************************
 
     @Override
@@ -496,6 +497,8 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
                 // Invalid mail and/or password
                 Toast.makeText(getActivity(), getString(R.string.error_invalid_login_info), Toast.LENGTH_SHORT).show(); // DEBUG
                 mPasswordEditText.requestFocus();
+                mLoggingIn = false;
+                showProgress(false);
             }
         }
 
@@ -547,7 +550,7 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
         {
             //Parsea la informacion de perfil y el perfil de cada amigo
             ServerHandler serverHandler = ServerHandler.get(getActivity());
-            String url = "http://" + serverHandler.getServerIP() + "/users/" + serverHandler.getUsername() + "/profile/";
+            String url = "http://" + serverHandler.getServerIP() + "/users/" + serverHandler.getUsername();
             mProfileData = serverHandler.GET(url);
             Log.d("Jobify", "Profile response: " + mProfileData);
 
@@ -559,15 +562,19 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
             {
                 return false;
             }
+            if (!parseNotifications(mProfileData))
+            {
+                return false;
+            }
 
             for (int i = 0; i < mContactsData.size(); ++i)
             {
-                String contactMail = mContactsData.get(i);
-                String requestURL = "http://" + serverHandler.getServerIP() + "/users/" + contactMail + "/profile/";
+                String contactUsername = mContactsData.get(i);
+                String requestURL = "http://" + serverHandler.getServerIP() + "/users/" + contactUsername + "/profile/";
                 String response = serverHandler.GET(requestURL);
-                Log.d("Jobify", "Contact " + contactMail + " response: " + response);
+                Log.d("Jobify", "Contact " + contactUsername + " response: " + response);
 
-                if (!parseFriendProfile(response, contactMail))
+                if (!parseFriendProfile(response, contactUsername))
                 {
                     return false;
                 }
@@ -632,11 +639,9 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
                 JSONObject jsonContactsObject = new JSONObject(response);
                 JSONArray jsonContactsArray = jsonContactsObject.getJSONArray(FRIENDLIST_FIELD);
 
-                ImageConverter imageConverter = new ImageConverter();
-                InformationHolder informationHolder = InformationHolder.get();
                 for(int i=0; i < jsonContactsArray.length(); i++)
                 {
-                    // iterate the JSONArray and extract each contact
+                    // iterate the JSONArray and extract each contact username to use later
                     String contactUsername = jsonContactsArray.getString(i);
                     Log.d("Jobify", "Friend found: " + contactUsername);
                     mContactsData.add(contactUsername); // agrega mail a la lista para parsear luego los contactos
@@ -646,6 +651,35 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
             {
                 success = false;
                 Log.e("Jobify", "Error parsing friends response. " + e.getMessage());
+            }
+            return success;
+        }
+
+        private boolean parseNotifications(String response)
+        {
+            boolean success = true;
+            try
+            {
+                JSONObject jsonContactsObject = new JSONObject(response);
+                JSONArray jsonContactsArray = jsonContactsObject.getJSONArray(NOTIFICATIONS_FIELD);
+
+                InformationHolder informationHolder = InformationHolder.get();
+                for(int i=0; i < jsonContactsArray.length(); i++)
+                {
+                    String notificationString = jsonContactsArray.getString(i);
+                    String notificationCode = notificationString.substring(0, 1);
+                    int notCode = Integer.parseInt(notificationCode);
+                    String notificationContent = notificationString.substring(2, notificationString.length());
+
+                    Log.d("Jobify", "Notification found: " + notificationString + "code: " + notificationCode + " , content: " + notificationContent);
+                    Notification notification = new Notification(notificationContent, notCode);
+                    informationHolder.addNotification(notification);
+                }
+            }
+            catch (JSONException e)
+            {
+                success = false;
+                Log.e("Jobify", "Error parsing notifications: " + e.getMessage());
             }
             return success;
         }

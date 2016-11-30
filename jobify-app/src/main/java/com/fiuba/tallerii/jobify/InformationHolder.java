@@ -14,6 +14,7 @@ public class InformationHolder
     private List<Contact> mContacts;
     private List<Job> mJobs;
     private List<Skill> mSkills;
+    private List<Notification> mNotifications;
 
     public static InformationHolder get()
     {
@@ -29,6 +30,7 @@ public class InformationHolder
         mContacts = new ArrayList<>();
         mJobs = new ArrayList<>();
         mSkills = new ArrayList<>();
+        mNotifications = new ArrayList<>();
     }
 
     public List<Contact> getContacts()
@@ -86,6 +88,22 @@ public class InformationHolder
         mJobs.add(jobToAdd);
     }
 
+    public void addNotification(Notification notificationToAdd)
+    {
+        mNotifications.add(notificationToAdd);
+    }
+
+    public void removeNotification(int index)
+    {
+        mNotifications.remove(index);
+    }
+
+    public Notification getNotification(int index)
+    {
+        return mNotifications.get(index);
+    }
+
+
     public String getName()
     {
         return mName;
@@ -114,5 +132,10 @@ public class InformationHolder
     public void setProfilePicture(Bitmap profilePicture)
     {
         mProfilePicture = profilePicture;
+    }
+
+    public List<Notification> getNotifications()
+    {
+        return mNotifications;
     }
 }

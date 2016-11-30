@@ -17,6 +17,7 @@
     <string name="signup_label">Sign up</string>
     <string name="prompt_registration_complete">Congratulation and thank you for joining us!</string>
     <string name="prompt_first_name">First name</string>
+    <string name="prompt_edit_profile">Edit Profile</string>
     <string name="prompt_name">Name</string>
     <string name="prompt_last_name">Last name</string>
     <string name="prompt_email_username">Username/Email</string>
