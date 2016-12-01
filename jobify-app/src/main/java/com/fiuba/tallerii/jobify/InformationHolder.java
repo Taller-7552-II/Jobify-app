@@ -38,6 +38,20 @@ public class InformationHolder
         return mContacts;
     }
 
+    public void replaceContact(String username, Contact newContact)
+    {
+        for (int i = 0; i < mContacts.size(); ++i)
+        {
+            if (mContacts.get(i).getEmail().equals(username))
+            {
+                mContacts.set(i, newContact);
+                return;
+            }
+        }
+        //si no lo encontro
+        mContacts.add(newContact);
+    }
+
     public List<Job> getJobs()
     {
         return mJobs;

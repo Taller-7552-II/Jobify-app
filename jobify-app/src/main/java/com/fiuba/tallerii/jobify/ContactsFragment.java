@@ -49,6 +49,13 @@ public class ContactsFragment  extends Fragment
     }
 
     @Override
+    public void onResume()
+    {
+        super.onResume();
+        updateUI();
+    }
+
+    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater)
     {
         super.onCreateOptionsMenu(menu, menuInflater);

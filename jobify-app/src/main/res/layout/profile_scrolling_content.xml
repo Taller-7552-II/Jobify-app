@@ -16,6 +16,7 @@
         android:orientation="vertical">
 
         <RelativeLayout
+            android:id="@+id/profile_name_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground"
@@ -31,17 +32,20 @@
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:src="@drawable/ic_profile" />
 
-            <TextView
+            <EditText
                 android:id="@+id/profile_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:imeActionId="@+id/change_name"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_toEndOf="@id/profile_name_icon"
                 android:layout_toRightOf="@id/profile_name_icon"
-                android:text=""
+                android:text="Name"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                 />
+                android:background="@android:color/transparent"
+                android:inputType="textPersonName"
+            />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -53,6 +57,54 @@
                 android:layout_toEndOf="@id/profile_name_icon"
                 android:layout_toRightOf="@id/profile_name_icon"
                 android:text="@string/prompt_name"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="#727272" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/profile_resume_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:padding="@dimen/activity_horizontal_margin">
+
+            <ImageView
+                android:id="@+id/profile_resumen_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:src="@drawable/ic_profile"
+                />
+
+            <EditText
+                android:id="@+id/profile_resumen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_toEndOf="@id/profile_resumen_icon"
+                android:layout_toRightOf="@id/profile_resumen_icon"
+                android:text="Content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:background="@android:color/transparent"
+                android:inputType="text"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/profile_resumen"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@id/profile_resumen_icon"
+                android:layout_toRightOf="@id/profile_resumen_icon"
+                android:text="@string/prompt_resume"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="#727272" />
 
@@ -73,7 +125,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:src="@drawable/ic_email"
+                android:src="@drawable/ic_email_icon"
                 android:visibility="invisible" />
 
             <TextView
@@ -84,7 +136,7 @@
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_toEndOf="@id/profile_email_icon"
                 android:layout_toRightOf="@id/profile_email_icon"
-                android:text=""
+                android:text="Email address"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121" />
 
@@ -107,6 +159,7 @@
         <include layout="@layout/item_divider" />
 
         <RelativeLayout
+            android:id="@+id/profile_skills_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground"
@@ -132,7 +185,7 @@
                 android:layout_toRightOf="@id/profile_skills_icon"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text=""
+                android:text="Skill Name"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121" />
 
@@ -152,6 +205,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/profile_jobs_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground"
@@ -208,12 +262,13 @@
 
             <Button
                 style="@style/Widget.AppCompat.Button.Colored"
+                android:id="@+id/profile_button_save_changes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
                 android:elevation="6dp"
                 android:backgroundTint="@color/abc_btn_colored_borderless_text_material"
-                android:text="@string/action_edit_profile" />
+                android:text="@string/action_save_changes" />
 
 
         </LinearLayout>

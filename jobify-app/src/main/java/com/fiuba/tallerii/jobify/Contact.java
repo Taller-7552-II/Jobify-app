@@ -61,4 +61,29 @@ public class Contact
     {
         return mJobs;
     }
+
+    public void addSkill(Skill skillToAdd)
+    {
+        for (Skill skill: mSkills)
+        {
+            if (skill.getTittle().equals(skillToAdd.getTittle()))
+            {
+                //exit if contact exists in the list
+                return;
+            }
+        }
+        mSkills.add(skillToAdd);
+    }
+
+    public void addJob(Job jobToAdd)
+    {
+        for (Job job: mJobs)
+        {
+            if (job.getTittle().equals(jobToAdd.getTittle()))
+            {
+                return;
+            }
+        }
+        mJobs.add(jobToAdd);
+    }
 }
