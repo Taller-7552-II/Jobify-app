@@ -125,7 +125,7 @@ public class MenuFragment extends Fragment
                 mPayloadEditText.setText(jsonParam.toString());
             } catch (JSONException e)
             {
-                Log.e("Json Error", "Error creating Json File");
+                Log.e("Jobify", "Error creating Json File");
             }
         }
         PostAsyncTask postAsyncTask = new PostAsyncTask(urlSpec, mPayloadEditText.getText().toString());
