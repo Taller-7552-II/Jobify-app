@@ -14,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,6 +25,8 @@ public class ContactsFragment  extends Fragment
 
     private RecyclerView mContactsRecycleView;
     private ContactsAdapter mContactsAdapter;
+
+    private Button mSearchButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -41,6 +44,16 @@ public class ContactsFragment  extends Fragment
 
         mContactsRecycleView = (RecyclerView) v.findViewById(R.id.recycler_view_contacts);
         mContactsRecycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        mSearchButton = (Button) v.findViewById(R.id.button_new_element);
+        mSearchButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                startSearchContactActivity();
+            }
+        });
 
         requestContacts(getActivity());
         updateUI();
@@ -68,12 +81,17 @@ public class ContactsFragment  extends Fragment
         switch (item.getItemId())
         {
             case R.id.menu_item_add_contact:
-                Intent intent = new Intent(getActivity(), AddContactActivity.class);
-                startActivity(intent);
+                startSearchContactActivity();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void startSearchContactActivity()
+    {
+        Intent intent = new Intent(getActivity(), AddContactActivity.class);
+        startActivity(intent);
     }
 
     private void requestContacts(Context context)

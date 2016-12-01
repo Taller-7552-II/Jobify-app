@@ -621,14 +621,15 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
                 ImageConverter imageConverter = new ImageConverter();
 
                 String name = jsonContactsObject.getString(NAME_FIELD);
+                String resume = jsonContactsObject.getString("resume");
                 Log.d("Jobify", "name: " + name);
                 Bitmap picture = imageConverter.decodeFromBase64ToBitmap(jsonContactsObject.getString(PICTURE_FIELD));
 
                 InformationHolder.get().setMail(ServerHandler.get(getActivity()).getUsername());
+                InformationHolder.get().setResume(resume);
                 InformationHolder.get().setName(name);
                 InformationHolder.get().setProfilePicture(picture);
 
-                //TODO SKILLS Y JOBS
 
             }
             catch (JSONException e)
@@ -704,8 +705,12 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
                 Log.d("jobify", "friend name: " + contactName);
                 Bitmap picture = imageConverter.decodeFromBase64ToBitmap(jsonContactsObject.getString(PICTURE_FIELD));
 
+                List<Skill> skills = parseFriendSkills(response);
+                List<Job> jobs = parseFriendJobs(response);
+
                 Contact contact = new Contact(contactName, friendUsername, picture);
-                //TODO agregar skills y jobs
+                contact.setSkills(skills);
+                contact.setJobs(jobs);
                 InformationHolder.get().addContact(contact);
 
             }
@@ -780,6 +785,63 @@ public class LogInFragment extends Fragment implements LoaderManager.LoaderCallb
             }
             return success;
         }
+
+        private List<Skill> parseFriendSkills(String response)
+        {
+            List<Skill> skills = new ArrayList<>();
+            try
+            {
+                JSONObject jsonObject = new JSONObject(response);
+
+                String fixedSkillsJson = jsonObject.getString(SKILLS_FIELD);
+                JSONArray jsonSkillsArray = new JSONArray(fixedSkillsJson);
+
+                for(int i=0; i < jsonSkillsArray.length(); i++)
+                {
+                    JSONObject jsonSkillObject = new JSONObject(jsonSkillsArray.getString(i));
+                    String skillTittle = jsonSkillObject.getString("name");
+                    String skillDescription = jsonSkillObject.getString("description");
+                    String skillCategory = jsonSkillObject.getString("category");
+
+                    Skill skill = new Skill(skillTittle, skillCategory, skillDescription);
+                    skills.add(skill);
+                }
+            }
+            catch (JSONException e)
+            {
+                Log.e("Jobify", "Error parsing friend skills. " + e.getMessage());
+            }
+            return skills;
+        }
+
+        private List<Job> parseFriendJobs(String response)
+        {
+            List<Job> jobs = new ArrayList<>();
+            try
+            {
+                JSONObject jsonObject = new JSONObject(response);
+
+                String fixedJobsJson = jsonObject.getString(JOBS_FIELD);
+                JSONArray jsonJobsArray = new JSONArray(fixedJobsJson);
+
+                for(int i=0; i < jsonJobsArray.length(); i++)
+                {
+                    JSONObject jsonJobObject = new JSONObject(jsonJobsArray.getString(i));
+                    String jobTittle = jsonJobObject.getString("name");
+                    String jobDescription = jsonJobObject.getString("description");
+                    String jobCategory = jsonJobObject.getString("category");
+
+                    Job job = new Job(jobTittle, jobCategory, jobDescription);
+                    jobs.add(job);
+                }
+            }
+            catch (JSONException e)
+            {
+                Log.e("Jobify", "Error parsing friend jobs. " + e.getMessage());
+            }
+            return jobs;
+        }
+
 
 
         @Override

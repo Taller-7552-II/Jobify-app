@@ -9,6 +9,7 @@ public class InformationHolder
     private static InformationHolder sInformationHolder;
 
     private String mName;
+    private String mResume;
     private String mMail;
     private Bitmap mProfilePicture;
     private List<Contact> mContacts;
@@ -142,6 +143,17 @@ public class InformationHolder
     {
         return mProfilePicture;
     }
+
+    public String getResume()
+    {
+        return mResume;
+    }
+
+    public void setResume(String resume)
+    {
+        mResume = resume;
+    }
+
 
     public void setProfilePicture(Bitmap profilePicture)
     {

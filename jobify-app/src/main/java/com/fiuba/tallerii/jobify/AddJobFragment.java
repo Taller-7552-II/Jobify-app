@@ -151,8 +151,30 @@ public class AddJobFragment extends Fragment
                 jobJson.put("description", mDescription);
                 jsonArray.put(jobJson);
 
+                //hotfix
+                List<Skill> skills = InformationHolder.get().getSkills();
+                JSONArray jsonSkillArray = new JSONArray();
+                for (Skill skill: skills)
+                {
+                    JSONObject skillJson = new JSONObject();
+                    skillJson.put("name", skill.getTittle());
+                    skillJson.put("category", skill.getCategory());
+                    skillJson.put("description", skill.getDescription());
+
+                    jsonSkillArray.put(skillJson);
+                }
+
                 JSONObject json = new JSONObject();
                 json.put("jobList", jsonArray.toString());
+                json.put("skillList", jsonSkillArray.toString());
+
+                json.put("name", InformationHolder.get().getName());
+                json.put("resume", InformationHolder.get().getResume());
+                json.put("email", ServerHandler.get(getActivity()).getUsername());
+                ImageConverter imageConverter = new ImageConverter();
+                String pictureBase65 = imageConverter.convertToBase64(InformationHolder.get().getProfilePicture());
+                json.put("picture", pictureBase65);
+
                 putParams = json.toString();
                 Log.d("Jobify","Add Job Put Parameters: " +  putParams);
 

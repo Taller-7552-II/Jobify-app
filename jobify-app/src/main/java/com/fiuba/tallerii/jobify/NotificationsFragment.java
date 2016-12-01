@@ -303,7 +303,6 @@ public class NotificationsFragment extends Fragment
                 mContactInfo.setName(name);
                 mContactInfo.setPicture(picture);
 
-                //TODO SKILLS Y JOBS
 
             } catch (JSONException e)
             {

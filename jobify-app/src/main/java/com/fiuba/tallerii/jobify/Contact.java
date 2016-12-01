@@ -86,4 +86,14 @@ public class Contact
         }
         mJobs.add(jobToAdd);
     }
+
+    public void setSkills(List<Skill> skills)
+    {
+        mSkills = skills;
+    }
+
+    public void setJobs(List<Job> jobs)
+    {
+        mJobs = jobs;
+    }
 }

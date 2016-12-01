@@ -19,11 +19,14 @@ public class ImageConverter
     }
 
     //Bitmap to String in base64
-    public String convertToBase64(String imagePath)
+    public String convertToBase64(Bitmap imageBitmap)
     {
-        Bitmap bm = BitmapFactory.decodeFile(imagePath);
+        if (imageBitmap == null)
+        {
+            return "";
+        }
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bm.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] byteArrayImage = baos.toByteArray();
         String encodedImage = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
         return encodedImage;

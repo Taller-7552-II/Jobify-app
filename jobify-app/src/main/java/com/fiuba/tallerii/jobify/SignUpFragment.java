@@ -457,4 +457,6 @@ public class SignUpFragment extends Fragment implements LoaderManager.LoaderCall
 
     }
 
+
+
 }
