@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Jobify</string>
     <string name="tittle_jobify">Jobify</string>
+    <string name="facebook_app_id">685237604982758</string>
 
     <!-- Content Descriptions-->
     <string name="description_jobify_tittle">Jobify Application Icon</string>
@@ -19,6 +20,7 @@
     <string name="prompt_first_name">First name</string>
     <string name="prompt_edit_profile">Edit Profile</string>
     <string name="prompt_name">Name</string>
+    <string name="prompt_resume">Resume</string>
     <string name="prompt_last_name">Last name</string>
     <string name="prompt_email_username">Username/Email</string>
     <string name="prompt_email">Email</string>
@@ -29,6 +31,7 @@
     <string name="action_submit">Submit</string>
     <string name="action_add_contact">Add contact</string>
     <string name="action_sign_up">Sign up</string>
+    <string name="action_save_changes">Save changes</string>
     <string name="action_sign_in">Sign in</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="action_sign_up_short">Sign up</string>

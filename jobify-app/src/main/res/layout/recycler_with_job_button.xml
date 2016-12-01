@@ -8,7 +8,7 @@
                 android:orientation="vertical">
 
     <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-                                            android:id="@+id/recycler_view_contacts"
+                                            android:id="@+id/recycler_view_with_button"
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
                                             android:padding="8dp"
@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Search for a Contact"
+        android:text="New Job"
         android:textStyle="bold"
         android:elevation="6dp"
         android:backgroundTint="@color/abc_btn_colored_borderless_text_material"

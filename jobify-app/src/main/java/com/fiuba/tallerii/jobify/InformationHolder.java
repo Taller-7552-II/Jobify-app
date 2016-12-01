@@ -9,6 +9,7 @@ public class InformationHolder
     private static InformationHolder sInformationHolder;
 
     private String mName;
+    private String mResume;
     private String mMail;
     private Bitmap mProfilePicture;
     private List<Contact> mContacts;
@@ -36,6 +37,20 @@ public class InformationHolder
     public List<Contact> getContacts()
     {
         return mContacts;
+    }
+
+    public void replaceContact(String username, Contact newContact)
+    {
+        for (int i = 0; i < mContacts.size(); ++i)
+        {
+            if (mContacts.get(i).getEmail().equals(username))
+            {
+                mContacts.set(i, newContact);
+                return;
+            }
+        }
+        //si no lo encontro
+        mContacts.add(newContact);
     }
 
     public List<Job> getJobs()
@@ -128,6 +143,17 @@ public class InformationHolder
     {
         return mProfilePicture;
     }
+
+    public String getResume()
+    {
+        return mResume;
+    }
+
+    public void setResume(String resume)
+    {
+        mResume = resume;
+    }
+
 
     public void setProfilePicture(Bitmap profilePicture)
     {

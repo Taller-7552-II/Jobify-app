@@ -1,6 +1,7 @@
 package com.fiuba.tallerii.jobify;
 
 
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -111,16 +113,7 @@ public class AddContactFragment extends Fragment
             String url = "http://" + serverHandler.getServerIP() + "/users/" + serverHandler.getUsername() + "/addFriend/" + mUsername;
 
             String postParams = "{}";
-            /*try
-            {
-                JSONObject jsonAddContactParams = new JSONObject();
-                jsonAddContactParams.put("username", mUsername);
-                postParams = jsonAddContactParams.toString();
-            }
-            catch(JSONException e)
-            {
-                Log.e("Jobify", "Error creating add Contact Json File");
-            }*/
+
             return serverHandler.POST(url, postParams);
         }
 
@@ -135,12 +128,8 @@ public class AddContactFragment extends Fragment
                 boolean success = status.equals(ADD_FRIEND_RESPONSE); //cambiar parseando el string
                 if (success)
                 {
-                    Toast.makeText(getActivity(), getString(R.string.notification_sent), Toast.LENGTH_LONG).show();
-                    //TODO AGREGAR USUARIO BIEN
-                    Contact contact = new Contact("nuevo", mUsername, null);
-                    InformationHolder.get().addContact(contact);
-
-                    getActivity().finish();
+                    RequestAddedContactTask requestContactTask = new RequestAddedContactTask(mUsername);
+                    requestContactTask.execute();
                 }
             }
             catch (JSONException e)
@@ -151,6 +140,155 @@ public class AddContactFragment extends Fragment
             }
         }
 
+
+        @Override
+        protected void onCancelled()
+        {
+        }
+    }
+
+    /*
+    Class for requesting friend profile data
+ */
+    public class RequestAddedContactTask extends AsyncTask<Void, Void, Boolean>
+    {
+        private String mContactUsername;
+
+        Contact mContactInfo;
+
+        private static final String NAME_FIELD = "name";
+        private static final String PICTURE_FIELD = "picture";
+        private static final String SKILLS_FIELD = "skillList";
+        private static final String JOBS_FIELD = "jobList";
+
+        public RequestAddedContactTask(String contactUsername)
+        {
+            mContactUsername = contactUsername;
+
+            mContactInfo = new Contact("", mContactUsername, null);
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params)
+        {
+            //Parsea la informacion de perfil y el perfil de cada amigo
+            ServerHandler serverHandler = ServerHandler.get(getActivity());
+            String url = "http://" + serverHandler.getServerIP() + "/users/" + mContactUsername + "/profile/";
+            String profileDataResponse = serverHandler.GET(url);
+            Log.d("Jobify", mContactUsername + " Profile response: " + profileDataResponse);
+
+            if (!parseBasicInfo(profileDataResponse))
+            {
+                return false;
+            }
+            if (!parseSkills(profileDataResponse))
+            {
+                return false;
+            }
+            if (!parseJobs(profileDataResponse))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private boolean parseBasicInfo(String response)
+        {
+            boolean success = true;
+            try
+            {
+                JSONObject jsonContactsObject = new JSONObject(response);
+                ImageConverter imageConverter = new ImageConverter();
+
+                String name = jsonContactsObject.getString(NAME_FIELD);
+                Log.d("Jobify", "Contact name: " + name);
+                Bitmap picture = imageConverter.decodeFromBase64ToBitmap(jsonContactsObject.getString(PICTURE_FIELD));
+
+                mContactInfo.setName(name);
+                mContactInfo.setPicture(picture);
+
+
+            } catch (JSONException e)
+            {
+                success = false;
+                Log.e("Jobify", "Error parsing user information request response. " + e.getMessage());
+            }
+            return success;
+        }
+
+        private boolean parseSkills(String response)
+        {
+            boolean success = true;
+            try
+            {
+                JSONObject jsonObject = new JSONObject(response);
+
+                String fixedSkillsJson = jsonObject.getString(SKILLS_FIELD);
+                JSONArray jsonSkillsArray = new JSONArray(fixedSkillsJson);
+
+                for (int i = 0; i < jsonSkillsArray.length(); i++)
+                {
+                    // iterate the JSONArray and extract each skill
+                    JSONObject jsonSkillObject = new JSONObject(jsonSkillsArray.getString(i));
+                    String skillTittle = jsonSkillObject.getString("name");
+                    String skillDescription = jsonSkillObject.getString("description");
+                    String skillCategory = jsonSkillObject.getString("category");
+
+                    Skill skill = new Skill(skillTittle, skillCategory, skillDescription);
+                    mContactInfo.addSkill(skill);
+                }
+            } catch (JSONException e)
+            {
+                success = false;
+                Log.e("Jobify", "Error parsing skills. " + e.getMessage());
+            }
+            return success;
+        }
+
+        private boolean parseJobs(String response)
+        {
+            boolean success = true;
+            try
+            {
+                JSONObject jsonObject = new JSONObject(response);
+                String fixedJobsJson = jsonObject.getString(JOBS_FIELD);
+                JSONArray jsonJobsArray = new JSONArray(fixedJobsJson);
+
+                for (int i = 0; i < jsonJobsArray.length(); i++)
+                {
+                    // iterate the JSONArray and extract each job
+                    JSONObject jsonJobObject = new JSONObject(jsonJobsArray.getString(i));
+                    String jobTittle = jsonJobObject.getString("name");
+                    String jobDescription = jsonJobObject.getString("description");
+                    String jobCategory = jsonJobObject.getString("category");
+
+                    Job job = new Job(jobTittle, jobCategory, jobDescription);
+                    mContactInfo.addJob(job);
+                }
+            } catch (JSONException e)
+            {
+                success = false;
+                Log.e("Jobify", "Error parsing jobs. " + e.getMessage());
+            }
+            return success;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean success)
+        {
+            if (success)
+            {
+                Toast.makeText(getActivity(), getString(R.string.notification_sent), Toast.LENGTH_LONG).show();
+                InformationHolder.get().addContact(mContactInfo);
+                getActivity().finish();
+            } else
+            {
+                Log.d("Jobify", "Error collecting " + mContactUsername + " profile data.");
+            }
+
+
+        }
 
         @Override
         protected void onCancelled()

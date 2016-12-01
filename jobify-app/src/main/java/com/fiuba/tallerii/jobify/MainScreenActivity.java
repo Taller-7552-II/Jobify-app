@@ -37,6 +37,7 @@ public class MainScreenActivity extends AppCompatActivity
         setupTabIcons();
     }
 
+
     private void setupTabIcons()
     {
         tabLayout.getTabAt(0).setIcon(R.mipmap.ic_home_white_24dp);
@@ -51,7 +52,7 @@ public class MainScreenActivity extends AppCompatActivity
         adapter.addFragment(new ProfileFragment(), "Profile");
         adapter.addFragment(new ContactsFragment(), "Contacts");
         adapter.addFragment(new NotificationsFragment(), "Notifications");
-        adapter.addFragment(new MenuFragment(), "Menu4");
+        adapter.addFragment(new ChatTabFragment(), "Chats");
         viewPager.setAdapter(adapter);
     }
 
