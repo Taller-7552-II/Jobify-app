@@ -204,7 +204,7 @@ Si ahora se dirige a la pestaña de contactos, podrá observar que el contacto a
 	:figclass: align-center
 	:scale: 30%
 
-Pestaña de Contactos
+Pestaña de Chats
 ================================================================================================================================
 En desarrollo. Todavía no ha sido integrada a la aplicación móvil.
 
