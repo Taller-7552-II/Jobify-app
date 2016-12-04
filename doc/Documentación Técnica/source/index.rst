@@ -1,9 +1,9 @@
-.. manual-usuario documentation master file, created by
-   sphinx-quickstart on Sun Dec  4 15:35:16 2016.
+.. manual-tecnico documentation master file, created by
+   sphinx-quickstart on Sun Dec  4 19:40:08 2016.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Jobify Application's documentation!
+Welcome to manual-tecnico's documentation!
 ==========================================
 
 Contents:
@@ -11,10 +11,6 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-   introduccion
-   instalacion
-   manual
-   known_issues
 
 
 Indices and tables
