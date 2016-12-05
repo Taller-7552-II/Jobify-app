@@ -11,6 +11,13 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
+   Activities/package-index
+   Fragments/package-index
+   Singletons/package-index
+   Adapter/package-index
+   Model/package-index
+   Util/package-index
+
 
 
 Indices and tables
