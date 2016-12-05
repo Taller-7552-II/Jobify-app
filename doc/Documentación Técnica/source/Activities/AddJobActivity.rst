@@ -3,9 +3,6 @@
 AddJobActivity
 ============
 
-.. java:package:: com.fiuba.tallerii.jobify
-   :noindex:
-
 .. java:type:: public class AddJobActivity extends SingleFragmentActivity
 
    Actividad con la interfaz para agregar una nueva experiencia laboral
