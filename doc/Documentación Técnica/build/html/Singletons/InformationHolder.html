@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>InformationHolder &#8212; manual-tecnico 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="manual-tecnico 1.0 documentation" href="../index.html" />
+    <link rel="up" title="Singletons" href="package-index.html" />
+    <link rel="next" title="Adapters" href="../Adapter/package-index.html" />
+    <link rel="prev" title="ServerHandler" href="ServerHandler.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="informationholder">
+<h1>InformationHolder<a class="headerlink" href="#informationholder" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="com.fiuba.tallerii.jobify.InformationHolder">
+public class <code class="descname">InformationHolder</code><a class="headerlink" href="#com.fiuba.tallerii.jobify.InformationHolder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Permite realizar operaciones HTTP a través de una API Rest, utilizando un token de authenticación.
+Es importante mencionar, que estas operaciones NO deben realizarse en la UI thread de Android, sino que deben ser desplazadas a otra thread. En esta aplicación, se utilizan AsyncTasks para ejecutar las operaciones del InformationHolder en la Background thread.</p>
+</dd></dl>
+
+<div class="section" id="fields">
+<h2>Fields<a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="mname">
+<h3>mName<a class="headerlink" href="#mname" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="com.fiuba.tallerii.jobify.InformationHolder.mName">
+private <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">mName</code><a class="headerlink" href="#com.fiuba.tallerii.jobify.InformationHolder.mName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Nombre del usuario actualmente conectado.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="mresume">
+<h3>mResume<a class="headerlink" href="#mresume" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="com.fiuba.tallerii.jobify.InformationHolder.mResume">
+private <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">mResume</code><a class="headerlink" href="#com.fiuba.tallerii.jobify.InformationHolder.mResume" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resumen del usuario actual</p>
+</dd></dl>
+
+</div>
+<div class="section" id="mmail">
+<h3>mMail<a class="headerlink" href="#mmail" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="com.fiuba.tallerii.jobify.InformationHolder.mMail">
+private <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">mMail</code><a class="headerlink" href="#com.fiuba.tallerii.jobify.InformationHolder.mMail" title="Permalink to this definition">¶</a></dt>
+<dd><p>Email del usuario actual</p>
+</dd></dl>
+
+</div>
+<div class="section" id="mprofilepicture">
+<h3>mProfilePicture<a class="headerlink" href="#mprofilepicture" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="com.fiuba.tallerii.jobify.InformationHolder.mProfilePicture">
+private Bitmap <code class="descname">mProfilePicture</code><a class="headerlink" href="#com.fiuba.tallerii.jobify.InformationHolder.mProfilePicture" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bitmap correspondiente a la foto de perfil del usuario actual.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="mcontacts">
+<h3>mContacts<a class="headerlink" href="#mcontacts" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="com.fiuba.tallerii.jobify.InformationHolder.mContacts">
+private List&lt;<a class="reference internal" href="../Model/Contact.html#com.fiuba.tallerii.jobify.Contact" title="com.fiuba.tallerii.jobify.Contact">Contact</a>&gt; <code class="descname">mContacts</code><a class="headerlink" href="#com.fiuba.tallerii.jobify.InformationHolder.mContacts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lista de contactos del usuario actual</p>
+</dd></dl>
+
+</div>
+<div class="section" id="mjobs">
+<h3>mJobs<a class="headerlink" href="#mjobs" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="com.fiuba.tallerii.jobify.InformationHolder.mJobs">
+private List&lt;<a class="reference internal" href="../Model/Job.html#com.fiuba.tallerii.jobify.Job" title="com.fiuba.tallerii.jobify.Job">Job</a>&gt; <code class="descname">mJobs</code><a class="headerlink" href="#com.fiuba.tallerii.jobify.InformationHolder.mJobs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lista de experiencias laborales del usuario actual</p>
+</dd></dl>
+
+</div>
+<div class="section" id="mskills">
+<h3>mSkills<a class="headerlink" href="#mskills" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="com.fiuba.tallerii.jobify.InformationHolder.mSkills">
+private List&lt;<a class="reference internal" href="../Model/Skill.html#com.fiuba.tallerii.jobify.Skill" title="com.fiuba.tallerii.jobify.Skill">Skill</a>&gt; <code class="descname">mSkills</code><a class="headerlink" href="#com.fiuba.tallerii.jobify.InformationHolder.mSkills" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lista de destrezas del usuario actual</p>
+</dd></dl>
+
+</div>
+<div class="section" id="mnotifications">
+<h3>mNotifications<a class="headerlink" href="#mnotifications" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="com.fiuba.tallerii.jobify.InformationHolder.mNotifications">
+private List&lt;<a class="reference internal" href="../Model/Notification.html#com.fiuba.tallerii.jobify.Notification" title="com.fiuba.tallerii.jobify.Notification">Notification</a>&gt; <code class="descname">mNotifications</code><a class="headerlink" href="#com.fiuba.tallerii.jobify.InformationHolder.mNotifications" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lista de notificaciones del usuario actual</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<p>Getters y Setters de los atributos anteriores.</p>
+<div class="section" id="get">
+<h3>get<a class="headerlink" href="#get" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.fiuba.tallerii.jobify.InformationHolder.get()">
+public static <a class="reference internal" href="#com.fiuba.tallerii.jobify.InformationHolder" title="com.fiuba.tallerii.jobify.InformationHolder">InformationHolder</a> <code class="descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#com.fiuba.tallerii.jobify.InformationHolder.get()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Devuelve la instancia actual del Singleton InformationHolder.</p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">InformationHolder</a><ul>
+<li><a class="reference internal" href="#fields">Fields</a><ul>
+<li><a class="reference internal" href="#mname">mName</a></li>
+<li><a class="reference internal" href="#mresume">mResume</a></li>
+<li><a class="reference internal" href="#mmail">mMail</a></li>
+<li><a class="reference internal" href="#mprofilepicture">mProfilePicture</a></li>
+<li><a class="reference internal" href="#mcontacts">mContacts</a></li>
+<li><a class="reference internal" href="#mjobs">mJobs</a></li>
+<li><a class="reference internal" href="#mskills">mSkills</a></li>
+<li><a class="reference internal" href="#mnotifications">mNotifications</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#methods">Methods</a><ul>
+<li><a class="reference internal" href="#get">get</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="package-index.html">Singletons</a><ul>
+      <li>Previous: <a href="ServerHandler.html" title="previous chapter">ServerHandler</a></li>
+      <li>Next: <a href="../Adapter/package-index.html" title="next chapter">Adapters</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Singletons/InformationHolder.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Gonzalo Guzzardi, Matias Carballo, Juan Patricio Marshall.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../_sources/Singletons/InformationHolder.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

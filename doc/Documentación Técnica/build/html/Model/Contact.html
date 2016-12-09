@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Contact &#8212; manual-tecnico 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="manual-tecnico 1.0 documentation" href="../index.html" />
+    <link rel="up" title="Model" href="package-index.html" />
+    <link rel="next" title="Skill" href="Skill.html" />
+    <link rel="prev" title="User" href="User.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="contact">
+<h1>Contact<a class="headerlink" href="#contact" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="com.fiuba.tallerii.jobify.Contact">
+public class <code class="descname">Contact</code><a class="headerlink" href="#com.fiuba.tallerii.jobify.Contact" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clase que contiene información acerca de un contacto.</p>
+</dd></dl>
+
+<div class="section" id="id1">
+<h2>Contact<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="notification">
+<h3>Notification<a class="headerlink" href="#notification" title="Permalink to this headline">¶</a></h3>
+<dl class="constructor">
+<dt id="com.fiuba.tallerii.jobify.Contact.Contact(String, String, Bitmap)">
+public <code class="descname">Contact</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> name</em>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> email</em>, Bitmap<em> pictureBitmap</em><span class="sig-paren">)</span><a class="headerlink" href="#com.fiuba.tallerii.jobify.Contact.Contact(String, String, Bitmap)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor. Inicializa los parametros ingresados.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> &#8211; nombre completo del contacto. Incluye apellido</li>
+<li><strong>email</strong> &#8211; email del contacto</li>
+<li><strong>pictureBitmap</strong> &#8211; foto de perfil del contacto</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<p>Getters y Setters de los atributos.</p>
+<div class="section" id="addskill">
+<h3>addSkill<a class="headerlink" href="#addskill" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.fiuba.tallerii.jobify.Contact.addSkill(Skill)">
+public void <code class="descname">addSkill</code><span class="sig-paren">(</span><a class="reference internal" href="Skill.html#com.fiuba.tallerii.jobify.Skill" title="com.fiuba.tallerii.jobify.Skill">Skill</a><em> skillToAdd</em><span class="sig-paren">)</span><a class="headerlink" href="#com.fiuba.tallerii.jobify.Contact.addSkill(Skill)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Agrega una destreza ignorando duplicados.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>skillToAdd</strong> &#8211; destreza a añadir.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="addjob">
+<h3>addJob<a class="headerlink" href="#addjob" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.fiuba.tallerii.jobify.Contact.addJob(Job)">
+public void <code class="descname">addJob</code><span class="sig-paren">(</span><a class="reference internal" href="Job.html#com.fiuba.tallerii.jobify.Job" title="com.fiuba.tallerii.jobify.Job">Job</a><em> jobToAdd</em><span class="sig-paren">)</span><a class="headerlink" href="#com.fiuba.tallerii.jobify.Contact.addJob(Job)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Agrega una experiencia laboral ignorando duplicados.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>jobToAdd</strong> &#8211; experiencia laboral a añadir.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Contact</a><ul>
+<li><a class="reference internal" href="#id1">Contact</a><ul>
+<li><a class="reference internal" href="#notification">Notification</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#methods">Methods</a><ul>
+<li><a class="reference internal" href="#addskill">addSkill</a></li>
+<li><a class="reference internal" href="#addjob">addJob</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="package-index.html">Model</a><ul>
+      <li>Previous: <a href="User.html" title="previous chapter">User</a></li>
+      <li>Next: <a href="Skill.html" title="next chapter">Skill</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Model/Contact.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Gonzalo Guzzardi, Matias Carballo, Juan Patricio Marshall.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../_sources/Model/Contact.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

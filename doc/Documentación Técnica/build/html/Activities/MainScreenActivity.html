@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>MainScreenActivity &#8212; manual-tecnico 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="manual-tecnico 1.0 documentation" href="../index.html" />
+    <link rel="up" title="Activity" href="package-index.html" />
+    <link rel="next" title="SingleFragmentActivity" href="SingleFragmentActivity.html" />
+    <link rel="prev" title="Activity" href="package-index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="mainscreenactivity">
+<h1>MainScreenActivity<a class="headerlink" href="#mainscreenactivity" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="com.fiuba.tallerii.jobify.MainScreenActivity">
+public class <code class="descname">MainScreenActivity</code> extends AppCompatActivity<a class="headerlink" href="#com.fiuba.tallerii.jobify.MainScreenActivity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Actividad principal de la aplicación. Contiene 4 Fragments correspondientes a las principales ventanas de la aplicación: Perfil, Contactos, Notificaciones, Chats. Para manipular dichos Fragments, utiliza la clase <cite>ViewPagerAdapter</cite>.</p>
+</dd></dl>
+
+<div class="section" id="fields">
+<h2>Fields<a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="mtoolbar">
+<h3>mToolbar<a class="headerlink" href="#mtoolbar" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="com.fiuba.tallerii.jobify.MainScreenActivity.mToolbar">
+private Toolbar <code class="descname">mToolbar</code><a class="headerlink" href="#com.fiuba.tallerii.jobify.MainScreenActivity.mToolbar" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="mtablayout">
+<h3>mTabLayout<a class="headerlink" href="#mtablayout" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="com.fiuba.tallerii.jobify.MainScreenActivity.mTabLayout">
+private TabLayout <code class="descname">mTabLayout</code><a class="headerlink" href="#com.fiuba.tallerii.jobify.MainScreenActivity.mTabLayout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Referencia al layout que contiene y establece como se muestran los tabs.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="mviewpager">
+<h3>mViewPager<a class="headerlink" href="#mviewpager" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="com.fiuba.tallerii.jobify.MainScreenActivity.mViewPager">
+private ViewPager <code class="descname">mViewPager</code><a class="headerlink" href="#com.fiuba.tallerii.jobify.MainScreenActivity.mViewPager" title="Permalink to this definition">¶</a></dt>
+<dd><p>ViewPager que maneja el paginado de los distintos Fragments que componen a la Activity.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="setuptabicons">
+<h3>setupTabIcons<a class="headerlink" href="#setuptabicons" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.fiuba.tallerii.jobify.MainScreenActivity.setupTabIcons()">
+private void <code class="descname">setupTabIcons</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#com.fiuba.tallerii.jobify.MainScreenActivity.setupTabIcons()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Establece las asociaciones entre íconos y Tabs.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="setupviewpager">
+<h3>setupViewPager<a class="headerlink" href="#setupviewpager" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.fiuba.tallerii.jobify.MainScreenActivity.setupViewPager(ViewPager)">
+private void <code class="descname">setupViewPager</code><span class="sig-paren">(</span>ViewPager<em> viewPager</em><span class="sig-paren">)</span><a class="headerlink" href="#com.fiuba.tallerii.jobify.MainScreenActivity.setupViewPager(ViewPager)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Crea todos los Fragments a utilizar en la MainScreenActivity y los agrega a un <cite>ViewPagerAdapter</cite>, para luego asignarselo al viewPager pasado como parámetro.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>viewPager</strong> &#8211; Referencia al viewPager utiliado para manejar el paginado de los Fragments. A esta ViewPager se le seteará el Adapter <cite>ViewPagerAdapter</cite> específico de la aplicación.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">MainScreenActivity</a><ul>
+<li><a class="reference internal" href="#fields">Fields</a><ul>
+<li><a class="reference internal" href="#mtoolbar">mToolbar</a></li>
+<li><a class="reference internal" href="#mtablayout">mTabLayout</a></li>
+<li><a class="reference internal" href="#mviewpager">mViewPager</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#methods">Methods</a><ul>
+<li><a class="reference internal" href="#setuptabicons">setupTabIcons</a></li>
+<li><a class="reference internal" href="#setupviewpager">setupViewPager</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="package-index.html">Activity</a><ul>
+      <li>Previous: <a href="package-index.html" title="previous chapter">Activity</a></li>
+      <li>Next: <a href="SingleFragmentActivity.html" title="next chapter">SingleFragmentActivity</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Activities/MainScreenActivity.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Gonzalo Guzzardi, Matias Carballo, Juan Patricio Marshall.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../_sources/Activities/MainScreenActivity.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

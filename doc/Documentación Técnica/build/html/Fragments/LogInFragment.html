@@ -1,0 +1,265 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>LogInFragment &#8212; manual-tecnico 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="manual-tecnico 1.0 documentation" href="../index.html" />
+    <link rel="up" title="Fragments" href="package-index.html" />
+    <link rel="next" title="SignUpFragment" href="SignUpFragment.html" />
+    <link rel="prev" title="Fragments" href="package-index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="loginfragment">
+<h1>LogInFragment<a class="headerlink" href="#loginfragment" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="com.fiuba.tallerii.jobify.LogInFragment">
+public class <code class="descname">LogInFragment</code> extends Fragment implements LoaderManager.LoaderCallbacks&lt;Cursor&gt;<a class="headerlink" href="#com.fiuba.tallerii.jobify.LogInFragment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Establece la interfaz de usuario para loguearse a la aplicación o crearse cuenta de no poseer una.</p>
+</dd></dl>
+
+<div class="section" id="fields">
+<h2>Fields<a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="mauthtask">
+<h3>mAuthTask<a class="headerlink" href="#mauthtask" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="com.fiuba.tallerii.jobify.LogInFragment.mAuthTask">
+private UserLoginTask <code class="descname">mAuthTask</code><a class="headerlink" href="#com.fiuba.tallerii.jobify.LogInFragment.mAuthTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Task asincrónica para intentar loguearse al servidor sin detener la UI thread.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="memailautocompletetext">
+<h3>mEmailAutocompleteText<a class="headerlink" href="#memailautocompletetext" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="com.fiuba.tallerii.jobify.LogInFragment.mEmailAutocompleteText">
+private AutoCompleteTextView <code class="descname">mEmailAutocompleteText</code><a class="headerlink" href="#com.fiuba.tallerii.jobify.LogInFragment.mEmailAutocompleteText" title="Permalink to this definition">¶</a></dt>
+<dd><p>Referencia al campo EditText que contiene la forma para ingresar el email.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="mpasswordedittext">
+<h3>mPasswordEditText<a class="headerlink" href="#mpasswordedittext" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="com.fiuba.tallerii.jobify.LogInFragment.mPasswordEditText">
+private EditText <code class="descname">mPasswordEditText</code><a class="headerlink" href="#com.fiuba.tallerii.jobify.LogInFragment.mPasswordEditText" title="Permalink to this definition">¶</a></dt>
+<dd><p>Referencia al campo EditText que contiene la forma para ingresar el password</p>
+</dd></dl>
+
+</div>
+<div class="section" id="msigninbutton">
+<h3>mSignInButton<a class="headerlink" href="#msigninbutton" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="com.fiuba.tallerii.jobify.LogInFragment.mSignInButton">
+private Button <code class="descname">mSignInButton</code><a class="headerlink" href="#com.fiuba.tallerii.jobify.LogInFragment.mSignInButton" title="Permalink to this definition">¶</a></dt>
+<dd><p>Referencia al botón de Sign Up utilizado para iniciar una <cite>SignUpActivity</cite>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="msignupbutton">
+<h3>mSignUpButton<a class="headerlink" href="#msignupbutton" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="com.fiuba.tallerii.jobify.LogInFragment.mSignUpButton">
+private Button <code class="descname">mSignUpButton</code><a class="headerlink" href="#com.fiuba.tallerii.jobify.LogInFragment.mSignUpButton" title="Permalink to this definition">¶</a></dt>
+<dd><p>Referencia al botón de Log In utilizado para intentar acceder a la aplicación.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="oncreateview">
+<h3>onCreateView<a class="headerlink" href="#oncreateview" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="joinapplication">
+<h3>joinApplication<a class="headerlink" href="#joinapplication" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.fiuba.tallerii.jobify.LogInFragment.joinApplication()">
+private void <code class="descname">joinApplication</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#com.fiuba.tallerii.jobify.LogInFragment.joinApplication()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inicia la Activity: <cite>MainScreenActivity</cite>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="onresume">
+<h3>onResume<a class="headerlink" href="#onresume" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.fiuba.tallerii.jobify.LogInFragment.onResume()">
+public void <code class="descname">onResume</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#com.fiuba.tallerii.jobify.LogInFragment.onResume()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invoca a <cite>resetFields</cite> para limpiar los campos de los formularios.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="resetfields">
+<h3>resetFields<a class="headerlink" href="#resetfields" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.fiuba.tallerii.jobify.LogInFragment.resetFields()">
+private void <code class="descname">resetFields</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#com.fiuba.tallerii.jobify.LogInFragment.resetFields()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Limpia los campos de los formularios.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="opensignupactivity">
+<h3>OpenSignUpActivity<a class="headerlink" href="#opensignupactivity" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.fiuba.tallerii.jobify.LogInFragment.OpenSignUpActivity()">
+private void <code class="descname">OpenSignUpActivity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#com.fiuba.tallerii.jobify.LogInFragment.OpenSignUpActivity()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inicia la Activity: <cite>SignUpActivity</cite>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="populateautocomplete">
+<h3>populateAutoComplete<a class="headerlink" href="#populateautocomplete" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.fiuba.tallerii.jobify.LogInFragment.populateAutoComplete()">
+private void <code class="descname">populateAutoComplete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#com.fiuba.tallerii.jobify.LogInFragment.populateAutoComplete()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sugiere emails conocidos para ingresar en el campo <cite>mEmailAutocompleteText</cite>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="attemptlogin">
+<h3>attemptLogin<a class="headerlink" href="#attemptlogin" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.fiuba.tallerii.jobify.LogInFragment.attemptLogin()">
+private void <code class="descname">attemptLogin</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#com.fiuba.tallerii.jobify.LogInFragment.attemptLogin()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Se fija que todos los campos ingresados tengan información válida. De ser así, inicia una tarea asincrónica para intentar conectarse al servidor con el email y password ingresados.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="showprogress">
+<h3>showProgress<a class="headerlink" href="#showprogress" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.fiuba.tallerii.jobify.LogInFragment.showProgress(boolean)">
+private void <code class="descname">showProgress</code><span class="sig-paren">(</span>boolean<em> show</em><span class="sig-paren">)</span><a class="headerlink" href="#com.fiuba.tallerii.jobify.LogInFragment.showProgress(boolean)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Si el parámetro ingresado es true, esconde los elementos de UI de logueo y muestra la animación de cargado. Si es true, esconde la animación de cargado y regresa la aplicación a su estado ordinario.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>show</strong> &#8211; Determina si se muestra la animación de cargando, o si se esconde.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">LogInFragment</a><ul>
+<li><a class="reference internal" href="#fields">Fields</a><ul>
+<li><a class="reference internal" href="#mauthtask">mAuthTask</a></li>
+<li><a class="reference internal" href="#memailautocompletetext">mEmailAutocompleteText</a></li>
+<li><a class="reference internal" href="#mpasswordedittext">mPasswordEditText</a></li>
+<li><a class="reference internal" href="#msigninbutton">mSignInButton</a></li>
+<li><a class="reference internal" href="#msignupbutton">mSignUpButton</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#methods">Methods</a><ul>
+<li><a class="reference internal" href="#oncreateview">onCreateView</a></li>
+<li><a class="reference internal" href="#joinapplication">joinApplication</a></li>
+<li><a class="reference internal" href="#onresume">onResume</a></li>
+<li><a class="reference internal" href="#resetfields">resetFields</a></li>
+<li><a class="reference internal" href="#opensignupactivity">OpenSignUpActivity</a></li>
+<li><a class="reference internal" href="#populateautocomplete">populateAutoComplete</a></li>
+<li><a class="reference internal" href="#attemptlogin">attemptLogin</a></li>
+<li><a class="reference internal" href="#showprogress">showProgress</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="package-index.html">Fragments</a><ul>
+      <li>Previous: <a href="package-index.html" title="previous chapter">Fragments</a></li>
+      <li>Next: <a href="SignUpFragment.html" title="next chapter">SignUpFragment</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Fragments/LogInFragment.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Gonzalo Guzzardi, Matias Carballo, Juan Patricio Marshall.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../_sources/Fragments/LogInFragment.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,175 @@
+\indexentry{MainScreenActivity (Java class)|hyperpage}{3}
+\indexentry{mToolbar (Java field)|hyperpage}{3}
+\indexentry{mTabLayout (Java field)|hyperpage}{3}
+\indexentry{mViewPager (Java field)|hyperpage}{3}
+\indexentry{setupTabIcons() (Java method)|hyperpage}{3}
+\indexentry{setupViewPager(ViewPager) (Java method)|hyperpage}{3}
+\indexentry{SingleFragmentActivity (Java class)|hyperpage}{4}
+\indexentry{createFragment() (Java method)|hyperpage}{4}
+\indexentry{onCreate(Bundle) (Java method)|hyperpage}{4}
+\indexentry{LogInActivity (Java class)|hyperpage}{4}
+\indexentry{createFragment() (Java method)|hyperpage}{4}
+\indexentry{SignUpActivity (Java class)|hyperpage}{5}
+\indexentry{createFragment() (Java method)|hyperpage}{5}
+\indexentry{AddContactActivity (Java class)|hyperpage}{5}
+\indexentry{createFragment() (Java method)|hyperpage}{5}
+\indexentry{SkillsActivity (Java class)|hyperpage}{5}
+\indexentry{createFragment() (Java method)|hyperpage}{5}
+\indexentry{AddSkillActivity (Java class)|hyperpage}{5}
+\indexentry{createFragment() (Java method)|hyperpage}{6}
+\indexentry{JobsActivity (Java class)|hyperpage}{6}
+\indexentry{createFragment() (Java method)|hyperpage}{6}
+\indexentry{AddJobActivity (Java class)|hyperpage}{6}
+\indexentry{createFragment() (Java method)|hyperpage}{6}
+\indexentry{LogInFragment (Java class)|hyperpage}{7}
+\indexentry{mAuthTask (Java field)|hyperpage}{7}
+\indexentry{mEmailAutocompleteText (Java field)|hyperpage}{7}
+\indexentry{mPasswordEditText (Java field)|hyperpage}{7}
+\indexentry{mSignInButton (Java field)|hyperpage}{7}
+\indexentry{mSignUpButton (Java field)|hyperpage}{7}
+\indexentry{joinApplication() (Java method)|hyperpage}{8}
+\indexentry{onResume() (Java method)|hyperpage}{8}
+\indexentry{resetFields() (Java method)|hyperpage}{8}
+\indexentry{OpenSignUpActivity() (Java method)|hyperpage}{8}
+\indexentry{populateAutoComplete() (Java method)|hyperpage}{8}
+\indexentry{attemptLogin() (Java method)|hyperpage}{8}
+\indexentry{showProgress(boolean) (Java method)|hyperpage}{8}
+\indexentry{SignUpFragment (Java class)|hyperpage}{8}
+\indexentry{mSignUpTask (Java field)|hyperpage}{9}
+\indexentry{mEmailAutocompleteText (Java field)|hyperpage}{9}
+\indexentry{mPasswordEditText (Java field)|hyperpage}{9}
+\indexentry{mFirstNameEditText (Java field)|hyperpage}{9}
+\indexentry{mLastNameEditText (Java field)|hyperpage}{9}
+\indexentry{mSignUpButton (Java field)|hyperpage}{9}
+\indexentry{attemptSignUp() (Java method)|hyperpage}{9}
+\indexentry{onResume() (Java method)|hyperpage}{9}
+\indexentry{resetFields() (Java method)|hyperpage}{10}
+\indexentry{OpenSignUpActivity() (Java method)|hyperpage}{10}
+\indexentry{populateAutoComplete() (Java method)|hyperpage}{10}
+\indexentry{showProgress(boolean) (Java method)|hyperpage}{10}
+\indexentry{ProfileFragment (Java class)|hyperpage}{10}
+\indexentry{attemptSignUp() (Java method)|hyperpage}{10}
+\indexentry{onResume() (Java method)|hyperpage}{10}
+\indexentry{updateFields() (Java method)|hyperpage}{11}
+\indexentry{chooseProfilePicture() (Java method)|hyperpage}{11}
+\indexentry{onActivityResult(int, int, Intent) (Java method)|hyperpage}{11}
+\indexentry{setUpResumeField(View) (Java method)|hyperpage}{11}
+\indexentry{setUpNameField(View) (Java method)|hyperpage}{11}
+\indexentry{setUpSaveChangesButton(View) (Java method)|hyperpage}{11}
+\indexentry{SkillsFragment (Java class)|hyperpage}{11}
+\indexentry{mSkillsRecycleView (Java field)|hyperpage}{11}
+\indexentry{mSkillsAdapter (Java field)|hyperpage}{12}
+\indexentry{mAddSkillButton (Java field)|hyperpage}{12}
+\indexentry{updateUI() (Java method)|hyperpage}{12}
+\indexentry{onCreateView(LayoutInflater, ViewGroup, Bundle) (Java method)|hyperpage}{12}
+\indexentry{onResume() (Java method)|hyperpage}{12}
+\indexentry{AddSkillFragment (Java class)|hyperpage}{12}
+\indexentry{mCategoryEditText (Java field)|hyperpage}{12}
+\indexentry{mDescriptionEditText (Java field)|hyperpage}{12}
+\indexentry{mAddSkillButton (Java field)|hyperpage}{13}
+\indexentry{addSkill() (Java method)|hyperpage}{13}
+\indexentry{onCreateView(LayoutInflater, ViewGroup, Bundle) (Java method)|hyperpage}{13}
+\indexentry{JobsFragment (Java class)|hyperpage}{13}
+\indexentry{mJobsRecycleView (Java field)|hyperpage}{13}
+\indexentry{mJobsAdapter (Java field)|hyperpage}{13}
+\indexentry{mAddJobButton (Java field)|hyperpage}{13}
+\indexentry{updateUI() (Java method)|hyperpage}{14}
+\indexentry{onCreateView(LayoutInflater, ViewGroup, Bundle) (Java method)|hyperpage}{14}
+\indexentry{onResume() (Java method)|hyperpage}{14}
+\indexentry{AddJobFragment (Java class)|hyperpage}{14}
+\indexentry{mCategoryEditText (Java field)|hyperpage}{14}
+\indexentry{mDescriptionEditText (Java field)|hyperpage}{14}
+\indexentry{mAddJobButton (Java field)|hyperpage}{14}
+\indexentry{addSkill() (Java method)|hyperpage}{15}
+\indexentry{onCreateView(LayoutInflater, ViewGroup, Bundle) (Java method)|hyperpage}{15}
+\indexentry{ContactsFragment (Java class)|hyperpage}{15}
+\indexentry{mContactsRecycleView (Java field)|hyperpage}{15}
+\indexentry{mContactsAdapter (Java field)|hyperpage}{15}
+\indexentry{mSearchButton (Java field)|hyperpage}{15}
+\indexentry{startSearchContactActivity() (Java method)|hyperpage}{15}
+\indexentry{updateUI() (Java method)|hyperpage}{16}
+\indexentry{onCreateView(LayoutInflater, ViewGroup, Bundle) (Java method)|hyperpage}{16}
+\indexentry{onResume() (Java method)|hyperpage}{16}
+\indexentry{AddContactFragment (Java class)|hyperpage}{16}
+\indexentry{mUsernameEditText (Java field)|hyperpage}{16}
+\indexentry{mAddContactButton (Java field)|hyperpage}{16}
+\indexentry{addContact() (Java method)|hyperpage}{16}
+\indexentry{isUsernameValid(String) (Java method)|hyperpage}{16}
+\indexentry{onCreateView(LayoutInflater, ViewGroup, Bundle) (Java method)|hyperpage}{17}
+\indexentry{NotificationsFragment (Java class)|hyperpage}{17}
+\indexentry{mNotificationsRecycleView (Java field)|hyperpage}{17}
+\indexentry{mNotificationsAdapter (Java field)|hyperpage}{17}
+\indexentry{mAddingFriend (Java field)|hyperpage}{17}
+\indexentry{createAddFriendDialog(String, int) (Java method)|hyperpage}{17}
+\indexentry{updateUI() (Java method)|hyperpage}{17}
+\indexentry{onCreateView(LayoutInflater, ViewGroup, Bundle) (Java method)|hyperpage}{18}
+\indexentry{onResume() (Java method)|hyperpage}{18}
+\indexentry{ServerHandler (Java class)|hyperpage}{19}
+\indexentry{mServerIP (Java field)|hyperpage}{19}
+\indexentry{mUsername (Java field)|hyperpage}{19}
+\indexentry{mConnectionToken (Java field)|hyperpage}{19}
+\indexentry{get(Context) (Java method)|hyperpage}{19}
+\indexentry{setConnectionToken(String) (Java method)|hyperpage}{20}
+\indexentry{GET(String) (Java method)|hyperpage}{20}
+\indexentry{POST(String, String) (Java method)|hyperpage}{20}
+\indexentry{PUT(String, String) (Java method)|hyperpage}{20}
+\indexentry{DELETE(String, String) (Java method)|hyperpage}{20}
+\indexentry{InformationHolder (Java class)|hyperpage}{21}
+\indexentry{mName (Java field)|hyperpage}{21}
+\indexentry{mResume (Java field)|hyperpage}{21}
+\indexentry{mMail (Java field)|hyperpage}{21}
+\indexentry{mProfilePicture (Java field)|hyperpage}{21}
+\indexentry{mContacts (Java field)|hyperpage}{21}
+\indexentry{mJobs (Java field)|hyperpage}{21}
+\indexentry{mSkills (Java field)|hyperpage}{21}
+\indexentry{mNotifications (Java field)|hyperpage}{22}
+\indexentry{get() (Java method)|hyperpage}{22}
+\indexentry{ViewPagerAdapter (Java class)|hyperpage}{23}
+\indexentry{mFragmentList (Java field)|hyperpage}{23}
+\indexentry{mFragmentTitleList (Java field)|hyperpage}{23}
+\indexentry{mShowTittle (Java field)|hyperpage}{23}
+\indexentry{ViewPagerAdapter(FragmentManager) (Java constructor)|hyperpage}{23}
+\indexentry{addFragment(Fragment, String) (Java method)|hyperpage}{24}
+\indexentry{getItem(int) (Java method)|hyperpage}{24}
+\indexentry{getCount() (Java method)|hyperpage}{24}
+\indexentry{getPageTitle(int) (Java method)|hyperpage}{24}
+\indexentry{SkillsAdapter (Java class)|hyperpage}{24}
+\indexentry{mSkills (Java field)|hyperpage}{24}
+\indexentry{SkillsAdapter(List) (Java constructor)|hyperpage}{25}
+\indexentry{onCreateViewHolder(ViewGroup, int) (Java method)|hyperpage}{25}
+\indexentry{getItemCount() (Java method)|hyperpage}{25}
+\indexentry{onBindViewHolder(SkillsViewHolder, int) (Java method)|hyperpage}{25}
+\indexentry{JobsAdapter (Java class)|hyperpage}{25}
+\indexentry{mJobs (Java field)|hyperpage}{25}
+\indexentry{JobsAdapter(List) (Java constructor)|hyperpage}{26}
+\indexentry{onCreateViewHolder(ViewGroup, int) (Java method)|hyperpage}{26}
+\indexentry{getItemCount() (Java method)|hyperpage}{26}
+\indexentry{onBindViewHolder(JobsViewHolder, int) (Java method)|hyperpage}{26}
+\indexentry{ContactsAdapter (Java class)|hyperpage}{26}
+\indexentry{mContacts (Java field)|hyperpage}{26}
+\indexentry{ContactsAdapter(List) (Java constructor)|hyperpage}{27}
+\indexentry{onCreateViewHolder(ViewGroup, int) (Java method)|hyperpage}{27}
+\indexentry{getItemCount() (Java method)|hyperpage}{27}
+\indexentry{onBindViewHolder(ContactsViewHolder, int) (Java method)|hyperpage}{27}
+\indexentry{mNotifications (Java field)|hyperpage}{27}
+\indexentry{NotificationAdapter(List) (Java constructor)|hyperpage}{28}
+\indexentry{onCreateViewHolder(ViewGroup, int) (Java method)|hyperpage}{28}
+\indexentry{getItemCount() (Java method)|hyperpage}{28}
+\indexentry{onBindViewHolder(NotificationsViewHolder, int) (Java method)|hyperpage}{28}
+\indexentry{User (Java class)|hyperpage}{29}
+\indexentry{User(String, String, String, String) (Java constructor)|hyperpage}{29}
+\indexentry{Contact (Java class)|hyperpage}{29}
+\indexentry{Contact(String, String, Bitmap) (Java constructor)|hyperpage}{29}
+\indexentry{addSkill(Skill) (Java method)|hyperpage}{30}
+\indexentry{addJob(Job) (Java method)|hyperpage}{30}
+\indexentry{Skill (Java class)|hyperpage}{30}
+\indexentry{Skill(String, String, String) (Java constructor)|hyperpage}{30}
+\indexentry{Job (Java class)|hyperpage}{31}
+\indexentry{Skill(String, String, String) (Java constructor)|hyperpage}{31}
+\indexentry{Notification (Java class)|hyperpage}{31}
+\indexentry{Notification(String, int) (Java constructor)|hyperpage}{31}
+\indexentry{generateTitle(int) (Java method)|hyperpage}{32}
+\indexentry{FieldValidator (Java class)|hyperpage}{33}
+\indexentry{isNameValid(String) (Java method)|hyperpage}{33}
+\indexentry{isEmailValid(String) (Java method)|hyperpage}{33}
+\indexentry{isPasswordValid(String) (Java method)|hyperpage}{33}

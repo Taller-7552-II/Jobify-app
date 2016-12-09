@@ -1,0 +1,291 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>ServerHandler &#8212; manual-tecnico 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="manual-tecnico 1.0 documentation" href="../index.html" />
+    <link rel="up" title="Singletons" href="package-index.html" />
+    <link rel="next" title="InformationHolder" href="InformationHolder.html" />
+    <link rel="prev" title="Singletons" href="package-index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="serverhandler">
+<h1>ServerHandler<a class="headerlink" href="#serverhandler" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="com.fiuba.tallerii.jobify.ServerHandler">
+public class <code class="descname">ServerHandler</code><a class="headerlink" href="#com.fiuba.tallerii.jobify.ServerHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Permite realizar operaciones HTTP a través de una API Rest, utilizando un token de authenticación.
+Es importante mencionar, que estas operaciones NO deben realizarse en la UI thread de Android, sino que deben ser desplazadas a otra thread. En esta aplicación, se utilizan AsyncTasks para ejecutar las operaciones del ServerHandler en la Background thread.</p>
+</dd></dl>
+
+<div class="section" id="fields">
+<h2>Fields<a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="mserverip">
+<h3>mServerIP<a class="headerlink" href="#mserverip" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="com.fiuba.tallerii.jobify.ServerHandler.mServerIP">
+private <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">mServerIP</code><a class="headerlink" href="#com.fiuba.tallerii.jobify.ServerHandler.mServerIP" title="Permalink to this definition">¶</a></dt>
+<dd><p>IP del server con puerto incluido, el cual utilizarña para conectarse al servidor. Ejemplo: 192.168.0.19:8000</p>
+</dd></dl>
+
+</div>
+<div class="section" id="musername">
+<h3>mUsername<a class="headerlink" href="#musername" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="com.fiuba.tallerii.jobify.ServerHandler.mUsername">
+private <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">mUsername</code><a class="headerlink" href="#com.fiuba.tallerii.jobify.ServerHandler.mUsername" title="Permalink to this definition">¶</a></dt>
+<dd><p>Nombre de usuario con el cual se ha establecido la conexión</p>
+</dd></dl>
+
+</div>
+<div class="section" id="mconnectiontoken">
+<h3>mConnectionToken<a class="headerlink" href="#mconnectiontoken" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="com.fiuba.tallerii.jobify.ServerHandler.mConnectionToken">
+private <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">mConnectionToken</code><a class="headerlink" href="#com.fiuba.tallerii.jobify.ServerHandler.mConnectionToken" title="Permalink to this definition">¶</a></dt>
+<dd><p>Token provista para el usuario actual.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="get">
+<h3>get<a class="headerlink" href="#get" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.fiuba.tallerii.jobify.ServerHandler.get(Context)">
+public static <a class="reference internal" href="#com.fiuba.tallerii.jobify.ServerHandler" title="com.fiuba.tallerii.jobify.ServerHandler">ServerHandler</a> <code class="descname">get</code><span class="sig-paren">(</span>Context<em> context</em><span class="sig-paren">)</span><a class="headerlink" href="#com.fiuba.tallerii.jobify.ServerHandler.get(Context)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Devuelve la instancia actual del Singleton ServerHandler.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="setconnectiontoken">
+<h3>setConnectionToken<a class="headerlink" href="#setconnectiontoken" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.fiuba.tallerii.jobify.ServerHandler.setConnectionToken(String)">
+public void <code class="descname">setConnectionToken</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> connectionToken</em><span class="sig-paren">)</span><a class="headerlink" href="#com.fiuba.tallerii.jobify.ServerHandler.setConnectionToken(String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Permite utilizar el token provisto en los headers de los mensajes HTTP realizados.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>connectionToken</strong> &#8211; token de authenticación provisto</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id1">
+<h3>GET<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.fiuba.tallerii.jobify.ServerHandler.GET(String)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">GET</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> urlSpec</em><span class="sig-paren">)</span><a class="headerlink" href="#com.fiuba.tallerii.jobify.ServerHandler.GET(String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Realiza un GET request a la dirección especificada por el parámetro urlSpec.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>urlSpec</strong> &#8211; URL a en la que se establecerá la conexión</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Respuesta del server</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="post">
+<h3>POST<a class="headerlink" href="#post" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.fiuba.tallerii.jobify.ServerHandler.POST(String, String)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">POST</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> urlSpec</em>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#com.fiuba.tallerii.jobify.ServerHandler.POST(String, String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Realiza un POST request a la dirección especificada por el parámetro urlSpec.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>urlSpec</strong> &#8211; URL a en la que se establecerá la conexión</li>
+<li><strong>parameters</strong> &#8211; parametros del POST en formato json</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Respuesta del server</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="put">
+<h3>PUT<a class="headerlink" href="#put" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.fiuba.tallerii.jobify.ServerHandler.PUT(String, String)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">PUT</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> urlSpec</em>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#com.fiuba.tallerii.jobify.ServerHandler.PUT(String, String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Realiza un PUT request a la dirección especificada por el parámetro urlSpec.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>urlSpec</strong> &#8211; URL a en la que se establecerá la conexión</li>
+<li><strong>parameters</strong> &#8211; parametros del PUT en formato json</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Respuesta del server</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="delete">
+<h3>DELETE<a class="headerlink" href="#delete" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.fiuba.tallerii.jobify.ServerHandler.DELETE(String, String)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">DELETE</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> urlSpec</em>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#com.fiuba.tallerii.jobify.ServerHandler.DELETE(String, String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Realiza un DELETE request a la dirección especificada por el parámetro urlSpec.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>urlSpec</strong> &#8211; URL a en la que se establecerá la conexión</li>
+<li><strong>parameters</strong> &#8211; parametros del DELETE en formato json</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Respuesta del server</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">ServerHandler</a><ul>
+<li><a class="reference internal" href="#fields">Fields</a><ul>
+<li><a class="reference internal" href="#mserverip">mServerIP</a></li>
+<li><a class="reference internal" href="#musername">mUsername</a></li>
+<li><a class="reference internal" href="#mconnectiontoken">mConnectionToken</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#methods">Methods</a><ul>
+<li><a class="reference internal" href="#get">get</a></li>
+<li><a class="reference internal" href="#setconnectiontoken">setConnectionToken</a></li>
+<li><a class="reference internal" href="#id1">GET</a></li>
+<li><a class="reference internal" href="#post">POST</a></li>
+<li><a class="reference internal" href="#put">PUT</a></li>
+<li><a class="reference internal" href="#delete">DELETE</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="package-index.html">Singletons</a><ul>
+      <li>Previous: <a href="package-index.html" title="previous chapter">Singletons</a></li>
+      <li>Next: <a href="InformationHolder.html" title="next chapter">InformationHolder</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Singletons/ServerHandler.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Gonzalo Guzzardi, Matias Carballo, Juan Patricio Marshall.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../_sources/Singletons/ServerHandler.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

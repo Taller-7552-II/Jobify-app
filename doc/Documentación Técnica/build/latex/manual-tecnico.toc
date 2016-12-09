@@ -1,0 +1,248 @@
+\select@language {english}
+\contentsline {chapter}{\numberline {1}Activity}{3}{chapter.1}
+\contentsline {section}{\numberline {1.1}MainScreenActivity}{3}{section.1.1}
+\contentsline {subsection}{\numberline {1.1.1}Fields}{3}{subsection.1.1.1}
+\contentsline {subsubsection}{mToolbar}{3}{subsubsection*.4}
+\contentsline {subsubsection}{mTabLayout}{3}{subsubsection*.6}
+\contentsline {subsubsection}{mViewPager}{3}{subsubsection*.8}
+\contentsline {subsection}{\numberline {1.1.2}Methods}{3}{subsection.1.1.2}
+\contentsline {subsubsection}{setupTabIcons}{3}{subsubsection*.10}
+\contentsline {subsubsection}{setupViewPager}{3}{subsubsection*.12}
+\contentsline {section}{\numberline {1.2}SingleFragmentActivity}{4}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}Methods}{4}{subsection.1.2.1}
+\contentsline {subsubsection}{createFragment}{4}{subsubsection*.15}
+\contentsline {subsubsection}{onCreate}{4}{subsubsection*.17}
+\contentsline {section}{\numberline {1.3}LogInActivity}{4}{section.1.3}
+\contentsline {subsection}{\numberline {1.3.1}Methods}{4}{subsection.1.3.1}
+\contentsline {subsubsection}{createFragment}{4}{subsubsection*.20}
+\contentsline {section}{\numberline {1.4}SignUpActivity}{5}{section.1.4}
+\contentsline {subsection}{\numberline {1.4.1}Methods}{5}{subsection.1.4.1}
+\contentsline {subsubsection}{createFragment}{5}{subsubsection*.23}
+\contentsline {section}{\numberline {1.5}AddContactActivity}{5}{section.1.5}
+\contentsline {subsection}{\numberline {1.5.1}Methods}{5}{subsection.1.5.1}
+\contentsline {subsubsection}{createFragment}{5}{subsubsection*.26}
+\contentsline {section}{\numberline {1.6}SkillsActivity}{5}{section.1.6}
+\contentsline {subsection}{\numberline {1.6.1}Methods}{5}{subsection.1.6.1}
+\contentsline {subsubsection}{createFragment}{5}{subsubsection*.29}
+\contentsline {section}{\numberline {1.7}AddSkillActivity}{5}{section.1.7}
+\contentsline {subsection}{\numberline {1.7.1}Methods}{6}{subsection.1.7.1}
+\contentsline {subsubsection}{createFragment}{6}{subsubsection*.32}
+\contentsline {section}{\numberline {1.8}JobsActivity}{6}{section.1.8}
+\contentsline {subsection}{\numberline {1.8.1}Methods}{6}{subsection.1.8.1}
+\contentsline {subsubsection}{createFragment}{6}{subsubsection*.35}
+\contentsline {section}{\numberline {1.9}AddJobActivity}{6}{section.1.9}
+\contentsline {subsection}{\numberline {1.9.1}Methods}{6}{subsection.1.9.1}
+\contentsline {subsubsection}{createFragment}{6}{subsubsection*.38}
+\contentsline {chapter}{\numberline {2}Fragments}{7}{chapter.2}
+\contentsline {section}{\numberline {2.1}LogInFragment}{7}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Fields}{7}{subsection.2.1.1}
+\contentsline {subsubsection}{mAuthTask}{7}{subsubsection*.41}
+\contentsline {subsubsection}{mEmailAutocompleteText}{7}{subsubsection*.43}
+\contentsline {subsubsection}{mPasswordEditText}{7}{subsubsection*.45}
+\contentsline {subsubsection}{mSignInButton}{7}{subsubsection*.47}
+\contentsline {subsubsection}{mSignUpButton}{7}{subsubsection*.49}
+\contentsline {subsection}{\numberline {2.1.2}Methods}{8}{subsection.2.1.2}
+\contentsline {subsubsection}{onCreateView}{8}{subsubsection*.51}
+\contentsline {subsubsection}{joinApplication}{8}{subsubsection*.52}
+\contentsline {subsubsection}{onResume}{8}{subsubsection*.54}
+\contentsline {subsubsection}{resetFields}{8}{subsubsection*.56}
+\contentsline {subsubsection}{OpenSignUpActivity}{8}{subsubsection*.58}
+\contentsline {subsubsection}{populateAutoComplete}{8}{subsubsection*.60}
+\contentsline {subsubsection}{attemptLogin}{8}{subsubsection*.62}
+\contentsline {subsubsection}{showProgress}{8}{subsubsection*.64}
+\contentsline {section}{\numberline {2.2}SignUpFragment}{8}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Fields}{9}{subsection.2.2.1}
+\contentsline {subsubsection}{mSignUpTask}{9}{subsubsection*.67}
+\contentsline {subsubsection}{mEmailAutocompleteText}{9}{subsubsection*.69}
+\contentsline {subsubsection}{mPasswordEditText}{9}{subsubsection*.71}
+\contentsline {subsubsection}{mFirstNameEditText}{9}{subsubsection*.73}
+\contentsline {subsubsection}{mLastNameEditText}{9}{subsubsection*.75}
+\contentsline {subsubsection}{mSignUpButton}{9}{subsubsection*.77}
+\contentsline {subsection}{\numberline {2.2.2}Methods}{9}{subsection.2.2.2}
+\contentsline {subsubsection}{onCreateView}{9}{subsubsection*.79}
+\contentsline {subsubsection}{attemptSignUp}{9}{subsubsection*.80}
+\contentsline {subsubsection}{onResume}{9}{subsubsection*.82}
+\contentsline {subsubsection}{resetFields}{10}{subsubsection*.84}
+\contentsline {subsubsection}{OpenSignUpActivity}{10}{subsubsection*.86}
+\contentsline {subsubsection}{populateAutoComplete}{10}{subsubsection*.88}
+\contentsline {subsubsection}{showProgress}{10}{subsubsection*.90}
+\contentsline {section}{\numberline {2.3}ProfileFragment}{10}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Methods}{10}{subsection.2.3.1}
+\contentsline {subsubsection}{onCreateView}{10}{subsubsection*.93}
+\contentsline {subsubsection}{attemptSignUp}{10}{subsubsection*.94}
+\contentsline {subsubsection}{onResume}{10}{subsubsection*.96}
+\contentsline {subsubsection}{updateFields}{11}{subsubsection*.98}
+\contentsline {subsubsection}{chooseProfilePicture}{11}{subsubsection*.100}
+\contentsline {subsubsection}{onActivityResult}{11}{subsubsection*.102}
+\contentsline {subsubsection}{setUpResumeField}{11}{subsubsection*.104}
+\contentsline {subsubsection}{setUpNameField}{11}{subsubsection*.106}
+\contentsline {subsubsection}{setUpSaveChangesButton}{11}{subsubsection*.108}
+\contentsline {section}{\numberline {2.4}SkillsFragment}{11}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Fields}{11}{subsection.2.4.1}
+\contentsline {subsubsection}{mSkillsRecycleView}{11}{subsubsection*.111}
+\contentsline {subsubsection}{mSkillsAdapter}{12}{subsubsection*.113}
+\contentsline {subsubsection}{mAddSkillButton}{12}{subsubsection*.115}
+\contentsline {subsection}{\numberline {2.4.2}Methods}{12}{subsection.2.4.2}
+\contentsline {subsubsection}{updateUI}{12}{subsubsection*.117}
+\contentsline {subsubsection}{onCreateView}{12}{subsubsection*.119}
+\contentsline {subsubsection}{onResume}{12}{subsubsection*.121}
+\contentsline {section}{\numberline {2.5}AddSkillFragment}{12}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}Fields}{12}{subsection.2.5.1}
+\contentsline {subsubsection}{mTitleEditText}{12}{subsubsection*.124}
+\contentsline {subsubsection}{mCategoryEditText}{12}{subsubsection*.125}
+\contentsline {subsubsection}{mDescriptionEditText}{12}{subsubsection*.127}
+\contentsline {subsubsection}{mAddSkillButton}{13}{subsubsection*.129}
+\contentsline {subsection}{\numberline {2.5.2}Methods}{13}{subsection.2.5.2}
+\contentsline {subsubsection}{addSkill}{13}{subsubsection*.131}
+\contentsline {subsubsection}{onCreateView}{13}{subsubsection*.133}
+\contentsline {section}{\numberline {2.6}JobsFragment}{13}{section.2.6}
+\contentsline {subsection}{\numberline {2.6.1}Fields}{13}{subsection.2.6.1}
+\contentsline {subsubsection}{mJobsRecycleView}{13}{subsubsection*.136}
+\contentsline {subsubsection}{mJobsAdapter}{13}{subsubsection*.138}
+\contentsline {subsubsection}{mAddJobButton}{13}{subsubsection*.140}
+\contentsline {subsection}{\numberline {2.6.2}Methods}{14}{subsection.2.6.2}
+\contentsline {subsubsection}{updateUI}{14}{subsubsection*.142}
+\contentsline {subsubsection}{onCreateView}{14}{subsubsection*.144}
+\contentsline {subsubsection}{onResume}{14}{subsubsection*.146}
+\contentsline {section}{\numberline {2.7}AddJobFragment}{14}{section.2.7}
+\contentsline {subsection}{\numberline {2.7.1}Fields}{14}{subsection.2.7.1}
+\contentsline {subsubsection}{mTitleEditText}{14}{subsubsection*.149}
+\contentsline {subsubsection}{mCategoryEditText}{14}{subsubsection*.150}
+\contentsline {subsubsection}{mDescriptionEditText}{14}{subsubsection*.152}
+\contentsline {subsubsection}{mAddJobButton}{14}{subsubsection*.154}
+\contentsline {subsection}{\numberline {2.7.2}Methods}{15}{subsection.2.7.2}
+\contentsline {subsubsection}{addJob}{15}{subsubsection*.156}
+\contentsline {subsubsection}{onCreateView}{15}{subsubsection*.158}
+\contentsline {section}{\numberline {2.8}ContactsFragment}{15}{section.2.8}
+\contentsline {subsection}{\numberline {2.8.1}Fields}{15}{subsection.2.8.1}
+\contentsline {subsubsection}{mContactsRecycleView}{15}{subsubsection*.161}
+\contentsline {subsubsection}{mContactsAdapter}{15}{subsubsection*.163}
+\contentsline {subsubsection}{mSearchButton}{15}{subsubsection*.165}
+\contentsline {subsection}{\numberline {2.8.2}Methods}{15}{subsection.2.8.2}
+\contentsline {subsubsection}{updateUI}{15}{subsubsection*.167}
+\contentsline {subsubsection}{updateUI}{16}{subsubsection*.169}
+\contentsline {subsubsection}{onCreateView}{16}{subsubsection*.171}
+\contentsline {subsubsection}{onResume}{16}{subsubsection*.173}
+\contentsline {section}{\numberline {2.9}AddContactFragment}{16}{section.2.9}
+\contentsline {subsection}{\numberline {2.9.1}Fields}{16}{subsection.2.9.1}
+\contentsline {subsubsection}{mUsernameEditText}{16}{subsubsection*.176}
+\contentsline {subsubsection}{mAddContactButton}{16}{subsubsection*.178}
+\contentsline {subsection}{\numberline {2.9.2}Methods}{16}{subsection.2.9.2}
+\contentsline {subsubsection}{addContact}{16}{subsubsection*.180}
+\contentsline {subsubsection}{isUsernameValid}{16}{subsubsection*.182}
+\contentsline {subsubsection}{onCreateView}{17}{subsubsection*.184}
+\contentsline {section}{\numberline {2.10}NotificationsFragment}{17}{section.2.10}
+\contentsline {subsection}{\numberline {2.10.1}Fields}{17}{subsection.2.10.1}
+\contentsline {subsubsection}{mNotificationsRecycleView}{17}{subsubsection*.187}
+\contentsline {subsubsection}{mNotificationsAdapter}{17}{subsubsection*.189}
+\contentsline {subsubsection}{mAddingFriend}{17}{subsubsection*.191}
+\contentsline {subsection}{\numberline {2.10.2}Methods}{17}{subsection.2.10.2}
+\contentsline {subsubsection}{createAddFriendDialog}{17}{subsubsection*.193}
+\contentsline {subsubsection}{updateUI}{17}{subsubsection*.195}
+\contentsline {subsubsection}{onCreate}{18}{subsubsection*.197}
+\contentsline {subsubsection}{onResume}{18}{subsubsection*.199}
+\contentsline {chapter}{\numberline {3}Singletons}{19}{chapter.3}
+\contentsline {section}{\numberline {3.1}ServerHandler}{19}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Fields}{19}{subsection.3.1.1}
+\contentsline {subsubsection}{mServerIP}{19}{subsubsection*.202}
+\contentsline {subsubsection}{mUsername}{19}{subsubsection*.204}
+\contentsline {subsubsection}{mConnectionToken}{19}{subsubsection*.206}
+\contentsline {subsection}{\numberline {3.1.2}Methods}{19}{subsection.3.1.2}
+\contentsline {subsubsection}{get}{19}{subsubsection*.208}
+\contentsline {subsubsection}{setConnectionToken}{20}{subsubsection*.210}
+\contentsline {subsubsection}{GET}{20}{subsubsection*.212}
+\contentsline {subsubsection}{POST}{20}{subsubsection*.214}
+\contentsline {subsubsection}{PUT}{20}{subsubsection*.216}
+\contentsline {subsubsection}{DELETE}{20}{subsubsection*.218}
+\contentsline {section}{\numberline {3.2}InformationHolder}{21}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Fields}{21}{subsection.3.2.1}
+\contentsline {subsubsection}{mName}{21}{subsubsection*.221}
+\contentsline {subsubsection}{mResume}{21}{subsubsection*.223}
+\contentsline {subsubsection}{mMail}{21}{subsubsection*.225}
+\contentsline {subsubsection}{mProfilePicture}{21}{subsubsection*.227}
+\contentsline {subsubsection}{mContacts}{21}{subsubsection*.229}
+\contentsline {subsubsection}{mJobs}{21}{subsubsection*.231}
+\contentsline {subsubsection}{mSkills}{21}{subsubsection*.233}
+\contentsline {subsubsection}{mNotifications}{22}{subsubsection*.235}
+\contentsline {subsection}{\numberline {3.2.2}Methods}{22}{subsection.3.2.2}
+\contentsline {subsubsection}{get}{22}{subsubsection*.237}
+\contentsline {chapter}{\numberline {4}Adapters}{23}{chapter.4}
+\contentsline {section}{\numberline {4.1}ViewPagerAdapter}{23}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Fields}{23}{subsection.4.1.1}
+\contentsline {subsubsection}{mFragmentList}{23}{subsubsection*.240}
+\contentsline {subsubsection}{mFragmentTitleList}{23}{subsubsection*.242}
+\contentsline {subsubsection}{mShowTittle}{23}{subsubsection*.244}
+\contentsline {subsection}{\numberline {4.1.2}Constructor}{23}{subsection.4.1.2}
+\contentsline {subsubsection}{ViewPagerAdapter}{23}{subsubsection*.246}
+\contentsline {subsection}{\numberline {4.1.3}Methods}{24}{subsection.4.1.3}
+\contentsline {subsubsection}{addFragment}{24}{subsubsection*.248}
+\contentsline {subsubsection}{getItem}{24}{subsubsection*.250}
+\contentsline {subsubsection}{getCount}{24}{subsubsection*.252}
+\contentsline {subsubsection}{getPageTitle}{24}{subsubsection*.254}
+\contentsline {section}{\numberline {4.2}SkillsAdapter}{24}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Fields}{24}{subsection.4.2.1}
+\contentsline {subsubsection}{mSkills}{24}{subsubsection*.257}
+\contentsline {subsection}{\numberline {4.2.2}Constructor}{25}{subsection.4.2.2}
+\contentsline {subsubsection}{SkillsAdapter}{25}{subsubsection*.259}
+\contentsline {subsection}{\numberline {4.2.3}Methods}{25}{subsection.4.2.3}
+\contentsline {subsubsection}{onCreateViewHolder}{25}{subsubsection*.261}
+\contentsline {subsubsection}{getItemCount}{25}{subsubsection*.263}
+\contentsline {subsubsection}{onBindViewHolder}{25}{subsubsection*.265}
+\contentsline {section}{\numberline {4.3}JobsAdapter}{25}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Fields}{25}{subsection.4.3.1}
+\contentsline {subsubsection}{mJobs}{25}{subsubsection*.268}
+\contentsline {subsection}{\numberline {4.3.2}Constructor}{26}{subsection.4.3.2}
+\contentsline {subsubsection}{JobsAdapter}{26}{subsubsection*.270}
+\contentsline {subsection}{\numberline {4.3.3}Methods}{26}{subsection.4.3.3}
+\contentsline {subsubsection}{onCreateViewHolder}{26}{subsubsection*.272}
+\contentsline {subsubsection}{getItemCount}{26}{subsubsection*.274}
+\contentsline {subsubsection}{onBindViewHolder}{26}{subsubsection*.276}
+\contentsline {section}{\numberline {4.4}ContactsAdapter}{26}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Fields}{26}{subsection.4.4.1}
+\contentsline {subsubsection}{mContacts}{26}{subsubsection*.279}
+\contentsline {subsection}{\numberline {4.4.2}Constructor}{27}{subsection.4.4.2}
+\contentsline {subsubsection}{ContactsAdapter}{27}{subsubsection*.281}
+\contentsline {subsection}{\numberline {4.4.3}Methods}{27}{subsection.4.4.3}
+\contentsline {subsubsection}{onCreateViewHolder}{27}{subsubsection*.283}
+\contentsline {subsubsection}{getItemCount}{27}{subsubsection*.285}
+\contentsline {subsubsection}{onBindViewHolder}{27}{subsubsection*.287}
+\contentsline {section}{\numberline {4.5}NotificationAdapter}{27}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Fields}{27}{subsection.4.5.1}
+\contentsline {subsubsection}{mNotifications}{27}{subsubsection*.289}
+\contentsline {subsection}{\numberline {4.5.2}Constructor}{28}{subsection.4.5.2}
+\contentsline {subsubsection}{NotificationAdapter}{28}{subsubsection*.291}
+\contentsline {subsection}{\numberline {4.5.3}Methods}{28}{subsection.4.5.3}
+\contentsline {subsubsection}{onCreateViewHolder}{28}{subsubsection*.293}
+\contentsline {subsubsection}{getItemCount}{28}{subsubsection*.295}
+\contentsline {subsubsection}{onBindViewHolder}{28}{subsubsection*.297}
+\contentsline {chapter}{\numberline {5}Model}{29}{chapter.5}
+\contentsline {section}{\numberline {5.1}User}{29}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Constructor}{29}{subsection.5.1.1}
+\contentsline {subsubsection}{User}{29}{subsubsection*.300}
+\contentsline {subsection}{\numberline {5.1.2}Methods}{29}{subsection.5.1.2}
+\contentsline {section}{\numberline {5.2}Contact}{29}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Contact}{29}{subsection.5.2.1}
+\contentsline {subsubsection}{Notification}{29}{subsubsection*.303}
+\contentsline {subsection}{\numberline {5.2.2}Methods}{30}{subsection.5.2.2}
+\contentsline {subsubsection}{addSkill}{30}{subsubsection*.305}
+\contentsline {subsubsection}{addJob}{30}{subsubsection*.307}
+\contentsline {section}{\numberline {5.3}Skill}{30}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Constructor}{30}{subsection.5.3.1}
+\contentsline {subsubsection}{Skill}{30}{subsubsection*.310}
+\contentsline {subsection}{\numberline {5.3.2}Methods}{30}{subsection.5.3.2}
+\contentsline {section}{\numberline {5.4}Job}{31}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Constructor}{31}{subsection.5.4.1}
+\contentsline {subsubsection}{Job}{31}{subsubsection*.313}
+\contentsline {subsection}{\numberline {5.4.2}Methods}{31}{subsection.5.4.2}
+\contentsline {section}{\numberline {5.5}Notification}{31}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}Constructor}{31}{subsection.5.5.1}
+\contentsline {subsubsection}{Notification}{31}{subsubsection*.316}
+\contentsline {subsection}{\numberline {5.5.2}Methods}{31}{subsection.5.5.2}
+\contentsline {subsubsection}{generateTitle}{32}{subsubsection*.318}
+\contentsline {chapter}{\numberline {6}Utils}{33}{chapter.6}
+\contentsline {section}{\numberline {6.1}FieldValidator}{33}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}Methods}{33}{subsection.6.1.1}
+\contentsline {subsubsection}{isNameValid}{33}{subsubsection*.321}
+\contentsline {subsubsection}{isEmailValid}{33}{subsubsection*.323}
+\contentsline {subsubsection}{isPasswordValid}{33}{subsubsection*.325}
+\contentsline {chapter}{\numberline {7}Indices and tables}{35}{chapter.7}

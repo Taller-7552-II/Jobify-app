@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>NotificationsFragment &#8212; manual-tecnico 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="manual-tecnico 1.0 documentation" href="../index.html" />
+    <link rel="up" title="Fragments" href="package-index.html" />
+    <link rel="next" title="Singletons" href="../Singletons/package-index.html" />
+    <link rel="prev" title="AddContactFragment" href="AddContactFragment.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="notificationsfragment">
+<h1>NotificationsFragment<a class="headerlink" href="#notificationsfragment" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="com.fiuba.tallerii.jobify.NotificationsFragment">
+public class <code class="descname">NotificationsFragment</code> extends Fragment<a class="headerlink" href="#com.fiuba.tallerii.jobify.NotificationsFragment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utiliza un RecyclerView para enlistar en forma eficiente las destrezas, permitiendo además, la edición de las mismas.</p>
+</dd></dl>
+
+<div class="section" id="fields">
+<h2>Fields<a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="mnotificationsrecycleview">
+<h3>mNotificationsRecycleView<a class="headerlink" href="#mnotificationsrecycleview" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="com.fiuba.tallerii.jobify.NotificationsFragment.mNotificationsRecycleView">
+private RecyclerView <code class="descname">mNotificationsRecycleView</code><a class="headerlink" href="#com.fiuba.tallerii.jobify.NotificationsFragment.mNotificationsRecycleView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Referencia al RecyclerView que maneja la vista de las notificaciones.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="mnotificationsadapter">
+<h3>mNotificationsAdapter<a class="headerlink" href="#mnotificationsadapter" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="com.fiuba.tallerii.jobify.NotificationsFragment.mNotificationsAdapter">
+private NotificationsAdapter <code class="descname">mNotificationsAdapter</code><a class="headerlink" href="#com.fiuba.tallerii.jobify.NotificationsFragment.mNotificationsAdapter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adapter utilizado para manejar la vista de las notificaciones en el RecyclerView. Ver <cite>NotificationsAdapter</cite>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="maddingfriend">
+<h3>mAddingFriend<a class="headerlink" href="#maddingfriend" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="com.fiuba.tallerii.jobify.NotificationsFragment.mAddingFriend">
+private boolean <code class="descname">mAddingFriend</code> = false<a class="headerlink" href="#com.fiuba.tallerii.jobify.NotificationsFragment.mAddingFriend" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define si se verán o no los títulos de los tabs. Por defecto, los títulos no se verán.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="createaddfrienddialog">
+<h3>createAddFriendDialog<a class="headerlink" href="#createaddfrienddialog" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.fiuba.tallerii.jobify.NotificationsFragment.createAddFriendDialog(String, int)">
+private void <code class="descname">createAddFriendDialog</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> friendUsername</em>, int<em> notificationIndex</em><span class="sig-paren">)</span><a class="headerlink" href="#com.fiuba.tallerii.jobify.NotificationsFragment.createAddFriendDialog(String, int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Crea un Dialog en respuesta a una notificación de solicitud de amistad, en el cual se puede aceptar o rechazar al contacto solicitante.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>friendUsername</strong> &#8211; Nombre de usuario del usuario que envío la solicitud.</li>
+<li><strong>notificationIndex</strong> &#8211; índice correspondiente a la lista de notificaciones.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="updateui">
+<h3>updateUI<a class="headerlink" href="#updateui" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.fiuba.tallerii.jobify.NotificationsFragment.updateUI()">
+private void <code class="descname">updateUI</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#com.fiuba.tallerii.jobify.NotificationsFragment.updateUI()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Actualiza la vista de las notificaciones. Para eso pide la información a <cite>InformationHandler</cite>, luego crea un <cite>NotificationsAdapter</cite> y lo asigna al RecyclerView.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="oncreate">
+<h3>onCreate<a class="headerlink" href="#oncreate" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.fiuba.tallerii.jobify.NotificationsFragment.onCreateView(LayoutInflater, ViewGroup, Bundle)">
+public View <code class="descname">onCreateView</code><span class="sig-paren">(</span>LayoutInflater<em> inflater</em>, ViewGroup<em> container</em>, Bundle<em> savedInstanceState</em><span class="sig-paren">)</span><a class="headerlink" href="#com.fiuba.tallerii.jobify.NotificationsFragment.onCreateView(LayoutInflater, ViewGroup, Bundle)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Infla el Fragment con su layout correspondiente e inicializa las referencias y componentes.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="onresume">
+<h3>onResume<a class="headerlink" href="#onresume" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.fiuba.tallerii.jobify.NotificationsFragment.onResume()">
+public void <code class="descname">onResume</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#com.fiuba.tallerii.jobify.NotificationsFragment.onResume()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Al resumir el Fragment se actualiza la vista de las notificaciones invocando a UpdateUI().</p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">NotificationsFragment</a><ul>
+<li><a class="reference internal" href="#fields">Fields</a><ul>
+<li><a class="reference internal" href="#mnotificationsrecycleview">mNotificationsRecycleView</a></li>
+<li><a class="reference internal" href="#mnotificationsadapter">mNotificationsAdapter</a></li>
+<li><a class="reference internal" href="#maddingfriend">mAddingFriend</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#methods">Methods</a><ul>
+<li><a class="reference internal" href="#createaddfrienddialog">createAddFriendDialog</a></li>
+<li><a class="reference internal" href="#updateui">updateUI</a></li>
+<li><a class="reference internal" href="#oncreate">onCreate</a></li>
+<li><a class="reference internal" href="#onresume">onResume</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="package-index.html">Fragments</a><ul>
+      <li>Previous: <a href="AddContactFragment.html" title="previous chapter">AddContactFragment</a></li>
+      <li>Next: <a href="../Singletons/package-index.html" title="next chapter">Singletons</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Fragments/NotificationsFragment.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Gonzalo Guzzardi, Matias Carballo, Juan Patricio Marshall.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../_sources/Fragments/NotificationsFragment.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

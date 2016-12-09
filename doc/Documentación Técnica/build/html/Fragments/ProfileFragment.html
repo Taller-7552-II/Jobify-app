@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>ProfileFragment &#8212; manual-tecnico 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="manual-tecnico 1.0 documentation" href="../index.html" />
+    <link rel="up" title="Fragments" href="package-index.html" />
+    <link rel="next" title="SkillsFragment" href="SkillsFragment.html" />
+    <link rel="prev" title="SignUpFragment" href="SignUpFragment.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="profilefragment">
+<h1>ProfileFragment<a class="headerlink" href="#profilefragment" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="com.fiuba.tallerii.jobify.ProfileFragment">
+public class <code class="descname">ProfileFragment</code> extends Fragment<a class="headerlink" href="#com.fiuba.tallerii.jobify.ProfileFragment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provee la interfaz para visualizar el perfil del usuario.</p>
+</dd></dl>
+
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="oncreateview">
+<h3>onCreateView<a class="headerlink" href="#oncreateview" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="attemptsignup">
+<h3>attemptSignUp<a class="headerlink" href="#attemptsignup" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.fiuba.tallerii.jobify.ProfileFragment.attemptSignUp()">
+private void <code class="descname">attemptSignUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#com.fiuba.tallerii.jobify.ProfileFragment.attemptSignUp()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Se fija que todos los campos ingresados tengan información válida. De ser así, inicia una tarea asincrónica para intentar conectarse al servidor y crear la cuenta. Si la cuenta se crea con éxito, la aplicación regresa a la Activity: <cite>LogInActivity</cite>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="onresume">
+<h3>onResume<a class="headerlink" href="#onresume" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.fiuba.tallerii.jobify.ProfileFragment.onResume()">
+public void <code class="descname">onResume</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#com.fiuba.tallerii.jobify.ProfileFragment.onResume()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Actualiza los campos del perfil a través del método <cite>updateFields</cite>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="updatefields">
+<h3>updateFields<a class="headerlink" href="#updatefields" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.fiuba.tallerii.jobify.ProfileFragment.updateFields()">
+private void <code class="descname">updateFields</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#com.fiuba.tallerii.jobify.ProfileFragment.updateFields()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Actualiza los valores de los componentes de la vista, utilizando los datos contenidos en el Singleto <cite>InformationHolder</cite>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="chooseprofilepicture">
+<h3>chooseProfilePicture<a class="headerlink" href="#chooseprofilepicture" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.fiuba.tallerii.jobify.ProfileFragment.chooseProfilePicture()">
+private void <code class="descname">chooseProfilePicture</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#com.fiuba.tallerii.jobify.ProfileFragment.chooseProfilePicture()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inicia un Intent para seleccionar una foto del dispositivo con cualquier aplicación capaz.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="onactivityresult">
+<h3>onActivityResult<a class="headerlink" href="#onactivityresult" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.fiuba.tallerii.jobify.ProfileFragment.onActivityResult(int, int, Intent)">
+public void <code class="descname">onActivityResult</code><span class="sig-paren">(</span>int<em> requestCode</em>, int<em> resultCode</em>, Intent<em> data</em><span class="sig-paren">)</span><a class="headerlink" href="#com.fiuba.tallerii.jobify.ProfileFragment.onActivityResult(int, int, Intent)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Si el resultado obtenido corresponde al de haber seleccionado una imagen satisfactoriamente. Procede a agregar la imagen como foto de perfil.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="setupresumefield">
+<h3>setUpResumeField<a class="headerlink" href="#setupresumefield" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.fiuba.tallerii.jobify.ProfileFragment.setUpResumeField(View)">
+private void <code class="descname">setUpResumeField</code><span class="sig-paren">(</span>View<em> v</em><span class="sig-paren">)</span><a class="headerlink" href="#com.fiuba.tallerii.jobify.ProfileFragment.setUpResumeField(View)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prepara el campo del Resumen para que pueda ser editable como corresponde.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="setupnamefield">
+<h3>setUpNameField<a class="headerlink" href="#setupnamefield" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.fiuba.tallerii.jobify.ProfileFragment.setUpNameField(View)">
+private void <code class="descname">setUpNameField</code><span class="sig-paren">(</span>View<em> v</em><span class="sig-paren">)</span><a class="headerlink" href="#com.fiuba.tallerii.jobify.ProfileFragment.setUpNameField(View)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prepara el campo del Nombre para que pueda ser editable como corresponde.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="setupsavechangesbutton">
+<h3>setUpSaveChangesButton<a class="headerlink" href="#setupsavechangesbutton" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.fiuba.tallerii.jobify.ProfileFragment.setUpSaveChangesButton(View)">
+private void <code class="descname">setUpSaveChangesButton</code><span class="sig-paren">(</span>View<em> v</em><span class="sig-paren">)</span><a class="headerlink" href="#com.fiuba.tallerii.jobify.ProfileFragment.setUpSaveChangesButton(View)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inicializa el botón de guardar los cambios y le agrega los listeners correspondientes.</p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">ProfileFragment</a><ul>
+<li><a class="reference internal" href="#methods">Methods</a><ul>
+<li><a class="reference internal" href="#oncreateview">onCreateView</a></li>
+<li><a class="reference internal" href="#attemptsignup">attemptSignUp</a></li>
+<li><a class="reference internal" href="#onresume">onResume</a></li>
+<li><a class="reference internal" href="#updatefields">updateFields</a></li>
+<li><a class="reference internal" href="#chooseprofilepicture">chooseProfilePicture</a></li>
+<li><a class="reference internal" href="#onactivityresult">onActivityResult</a></li>
+<li><a class="reference internal" href="#setupresumefield">setUpResumeField</a></li>
+<li><a class="reference internal" href="#setupnamefield">setUpNameField</a></li>
+<li><a class="reference internal" href="#setupsavechangesbutton">setUpSaveChangesButton</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="package-index.html">Fragments</a><ul>
+      <li>Previous: <a href="SignUpFragment.html" title="previous chapter">SignUpFragment</a></li>
+      <li>Next: <a href="SkillsFragment.html" title="next chapter">SkillsFragment</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Fragments/ProfileFragment.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Gonzalo Guzzardi, Matias Carballo, Juan Patricio Marshall.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../_sources/Fragments/ProfileFragment.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
